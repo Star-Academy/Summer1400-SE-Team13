@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     static void run(String searchWord) {
-        GetInput getInput = new GetInput("C:/Users/ASUS/Downloads/SampleEnglishData/EnglishData");
+        GetInput getInput = new GetInput("C:/Users/ASUS/Desktop/Phase1/EnglishData");
         HashMap<Integer, String> hashMap = getInput.readContent();
         InvertedIndex invertedIndex = new InvertedIndex();
 
@@ -14,8 +14,12 @@ public class Main {
         }
 
         HashSet<Integer> foundDocs = invertedIndex.getWordDocs(searchWord);
-        TreeSet<Integer> sortedDocs = new TreeSet<Integer>(foundDocs);
-        System.out.println(sortedDocs);
+        if (foundDocs.size() == 0)
+            System.out.println("Unavailable search!");
+        else {
+            TreeSet<Integer> sortedDocs = new TreeSet<Integer>(foundDocs);
+            System.out.println(sortedDocs);
+        }
     }
 
     public static void main(String[] args) {
