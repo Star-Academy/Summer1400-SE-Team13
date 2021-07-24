@@ -15,7 +15,7 @@ public class InvertedIndex {
 
     public void addDoc(HashSet<String> docWords, int docId) {
         for(String word : docWords) {
-            if(word.length <= 1)
+            if(word.length() <= 1)
                 continue;
             addWord(word);
             addDocID(word, docId);
