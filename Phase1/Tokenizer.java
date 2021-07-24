@@ -11,10 +11,10 @@ public class Tokenizer {
         doc = doc.replaceAll("[^A-Z]","");
         doc = doc.toLowerCase();
         HashSet<String> wordsSet = new HashSet<>();
-        String[] words = docString.split("\\W+");
+        String[] words = doc.split("\\W+");
         for (int j = 0; j < words.length; j++) {
             wordsSet.add(words[j]);
         }
-        return wordsSet
+        return wordsSet;
     }
 }
