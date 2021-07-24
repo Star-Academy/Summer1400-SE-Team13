@@ -9,7 +9,7 @@ public class Main {
         for (int key : hashMap.keySet()) {
             String docString = hashMap.get(key);
             Tokenizer tokenizer = new Tokenizer(docString);
-            HashSet wordSet = tokenizer.tokenize();
+            HashSet<String> wordsSet = tokenizer.tokenize();
             invertedIndex.addDoc(wordsSet, key);
         }
 
