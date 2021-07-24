@@ -1,17 +1,25 @@
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        GetInput getInput = new GetInput("C:/Users/ASUS/Downloads/SampleEnglishData/EnglishData");
+    static void run(String searchWord) {
+        GetInput getInput = new GetInput("home/melika/Desktop/codes/codestar/phase1/EnglishData");
         HashMap<Integer, String> hashMap = getInput.readContent();
-        int i = 0;
+        InvertedIndex invertedIndex = new InvertedIndex();
         
         for (int key : hashMap.keySet()) {
-            System.out.println("key: " + key + "value: " + hashMap.get(key));
-            i++;
-            if(i == 5)
-                break;
+            String docString = hashMap.get(key);
+            Tokenizer tokenizer = new Tokenizer(docString);
+            HashSet wordSet = tokenizer.tokenize();
+            invertedIndex.addDoc(wordsSet, key);
         }
+
+        HashSet<Integer> foundDocs = invertedIndex.getWordDocs(searchWord);
+        System.out.println(foundDocs);
     }
     
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String searchWord = scanner.nextLine();
+        run(searchWord);
+    }
 }

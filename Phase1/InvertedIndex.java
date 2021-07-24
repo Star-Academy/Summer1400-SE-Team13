@@ -13,12 +13,28 @@ public class InvertedIndex {
             map.put(word, new HashSet<>());
     }
 
-    public void addDoc(String word, int ID) {
+    public void addDoc(HashSet<String> docWords, int docId) {
+        for(String word : docWords) {
+            if(word.length <= 1)
+                continue;
+            addWord(word);
+            addDocID(word, docId);
+        }
+    }
+
+    public void addDocID(String word, int ID) {
         map.get(word).add(ID);
     }
 
     public HashSet<Integer> getWordDocs(String word) {
         return map.get(word);
+    }
+
+    public void print() {
+        for(String word : map.keySet()){
+            System.out.println(word);
+            System.out.println(map.get(word));
+        }
     }
 
 }
