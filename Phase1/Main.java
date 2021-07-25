@@ -14,7 +14,7 @@ public class Main {
         }
 
         HashSet<Integer> foundDocs = invertedIndex.getWordDocs(searchWord);
-        if (foundDocs.size() == 0)
+        if (foundDocs == null)
             System.out.println("Unavailable search!");
         else {
             TreeSet<Integer> sortedDocs = new TreeSet<Integer>(foundDocs);
@@ -24,7 +24,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String searchWord = scanner.nextLine();
+        String searchWord = scanner.nextLine().toLowerCase();
         run(searchWord);
+        scanner.close();
     }
 }
