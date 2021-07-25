@@ -35,11 +35,3 @@ public class InvertedIndex {
     public boolean containsWord(String word) {
         return wordsMap.containsKey(word);
     }
-
-    public void print() {
-        for (String word : wordsMap.keySet()) {
-            System.out.println(word);
-            System.out.println(wordsMap.get(word));
-        }
-    }
-}
