@@ -11,7 +11,7 @@ public class GetInput {
 
     public HashMap<Integer, String> readContent() {
         HashMap<Integer, String> filesContents = new HashMap<>();
-        int number = 0;
+        // int number = 0;
         for (File file : this.getFiles()) {
             try {
                 Scanner scanner = new Scanner(file);
@@ -19,13 +19,13 @@ public class GetInput {
                 while (scanner.hasNextLine()) {
                     content.append(" ").append(scanner.nextLine());
                 }
-                filesContents.put(number, content.toString().trim());
+                filesContents.put(Integer.parseInt(file.getName()), content.toString().trim());
                 scanner.close();
-                number++;
+                // number++;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-        
+
         }
         return filesContents;
     }
@@ -33,5 +33,5 @@ public class GetInput {
     public File[] getFiles() {
         return new File(mainPath).listFiles();
     }
-    
+
 }
