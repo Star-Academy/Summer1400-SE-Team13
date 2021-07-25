@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.HashSet;
 
 public class MinusFilter extends Filter {
     public HashSet<Integer> filter(HashSet<Integer> result, HashSet<Integer> docs) {

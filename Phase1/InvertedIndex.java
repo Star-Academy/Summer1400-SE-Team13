@@ -32,6 +32,10 @@ public class InvertedIndex {
         return null;
     }
 
+    /**
+     * check if the word exists in docs
+     */
     public boolean containsWord(String word) {
         return wordsMap.containsKey(word);
     }
+}
