@@ -8,7 +8,6 @@ public class Tokenizer {
     }
 
     public HashSet<String> tokenize() {
-        //doc = doc.replaceAll("[^A-Z]","");
         doc = doc.toLowerCase();
         HashSet<String> wordsSet = new HashSet<>();
         String[] words = doc.split("\\W+");
