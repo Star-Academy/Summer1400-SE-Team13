@@ -2,20 +2,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class InvertedIndex {
-    private HashMap<String, HashSet<Integer>> map;
+    private HashMap<String, HashSet<Integer>> wordsMap;
 
     public InvertedIndex() {
-        map = new HashMap<>();
+        wordsMap = new HashMap<>();
     }
-     
+
     public void addWord(String word) {
-        if (!map.containsKey(word))
-            map.put(word, new HashSet<>());
+        if (!wordsMap.containsKey(word))
+            wordsMap.put(word, new HashSet<>());
     }
 
     public void addDoc(HashSet<String> docWords, int docId) {
-        for(String word : docWords) {
-            if(word.length() <= 1)
+        for (String word : docWords) {
+            if (word.length() <= 1)
                 continue;
             addWord(word);
             addDocID(word, docId);
@@ -23,18 +23,23 @@ public class InvertedIndex {
     }
 
     public void addDocID(String word, int ID) {
-        map.get(word).add(ID);
+        wordsMap.get(word).add(ID);
     }
 
     public HashSet<Integer> getWordDocs(String word) {
-        return map.get(word);
+        if (containsWord(word))
+            return wordsMap.get(word);
+        return null;
+    }
+
+    public boolean containsWord(String word) {
+        return wordsMap.containsKey(word);
     }
 
     public void print() {
-        for(String word : map.keySet()){
+        for (String word : wordsMap.keySet()) {
             System.out.println(word);
-            System.out.println(map.get(word));
+            System.out.println(wordsMap.get(word));
         }
     }
-
 }
