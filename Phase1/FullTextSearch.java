@@ -1,9 +1,6 @@
 import java.util.*;
 
 public class FullTextSearch {
-    private static final char PLUS_SIGN = '+';
-    private static final char MINUS_SIGN = '-';
-    private static final String FILE_ADDRESS = "/home/melika/Desktop/codes/codestar/phase1/EnglishData";
     private String command;
     private HashSet<String> plus;
     private HashSet<String> minus;
@@ -22,24 +19,31 @@ public class FullTextSearch {
 
     public void run() {
         loadDocs();
-        split();
+        String[] words = split();
+        addToSeparateSets(words);
         handleFilters();
         printResponse();
     }
 
-    public void loadDocs() {
-        ReadDocsFile getInputDocs = new ReadDocsFile(FILE_ADDRESS);
-        HashMap<Integer, String> initialDocs = getInputDocs.readContent();
+    private void loadDocs() {
+        String FILE_ADDRESS = "EnglishData";
+        DocsFileReader fileReader = new DocsFileReader(FILE_ADDRESS);
+        HashMap<Integer, String> initialDocs = fileReader.readContent();
         for (int id : initialDocs.keySet()) {
             String docString = initialDocs.get(id);
-            Tokenizer tokenizer = new Tokenizer(docString);
-            HashSet<String> wordsSet = tokenizer.tokenize();
+            Tokenizer tokenizer = new Tokenizer();
+            HashSet<String> wordsSet = tokenizer.tokenize(docString);
             invertedIndex.addDoc(wordsSet, id);
         }
     }
 
-    public void split() {
-        String[] words = command.split(" ");
+    private String[] split() {
+        return command.split(" ");
+    }
+
+    private void addToSeparateSets(String[] words) {
+        char PLUS_SIGN = '+';
+        char MINUS_SIGN = '-';
         for (String word : words) {
             if (word.charAt(0) == PLUS_SIGN)
                 plus.add(word.substring(1, word.length()));
@@ -50,7 +54,7 @@ public class FullTextSearch {
         }
     }
 
-    public void handleFilters() {
+    private void handleFilters() {
         Filter currentFilter;
         for (String word : plus) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
@@ -76,13 +80,21 @@ public class FullTextSearch {
         }
     }
 
-    public void printResponse() {
-        if (result.size() == 0)
+    private void printResponse() {
+        if (emptyResult())
             System.out.println("no doc found!");
         else {
-            TreeSet<Integer> sortedDocs = new TreeSet<Integer>(result);
+            TreeSet<Integer> sortedDocs = sortIDS(result);
             System.out.println(sortedDocs.size());
             System.out.println(sortedDocs);
         }
+    }
+
+    private TreeSet<Integer> sortIDS(HashSet<Integer> IDs) {
+        return new TreeSet<Integer>(result);
+    }
+
+    private boolean emptyResult() {
+        return result.isEmpty();
     }
 }

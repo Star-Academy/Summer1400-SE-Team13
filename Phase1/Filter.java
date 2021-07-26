@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public abstract class Filter {
+interface Filter {
 
-    public abstract HashSet<Integer> filter(HashSet<Integer> result, HashSet<Integer> docs);
+    public HashSet<Integer> filter(HashSet<Integer> result, HashSet<Integer> docs);
 }

@@ -8,11 +8,6 @@ public class InvertedIndex {
         wordsMap = new HashMap<>();
     }
 
-    public void addWord(String word) {
-        if (!wordsMap.containsKey(word))
-            wordsMap.put(word, new HashSet<>());
-    }
-
     public void addDoc(HashSet<String> docWords, int docId) {
         for (String word : docWords) {
             if (word.length() <= 1)
@@ -22,8 +17,13 @@ public class InvertedIndex {
         }
     }
 
-    public void addDocID(String word, int ID) {
+    private void addDocID(String word, int ID) {
         wordsMap.get(word).add(ID);
+    }
+
+    private void addWord(String word) {
+        if (!wordsMap.containsKey(word))
+            wordsMap.put(word, new HashSet<>());
     }
 
     public HashSet<Integer> getWordDocs(String word) {

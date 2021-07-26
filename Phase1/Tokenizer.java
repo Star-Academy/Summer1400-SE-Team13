@@ -1,10 +1,8 @@
 import java.util.*;
 
 public class Tokenizer {
-    private String doc;
 
-    public Tokenizer(String doc) {
-        this.doc = doc;
+    public Tokenizer() {
     }
 
     /**
@@ -12,7 +10,7 @@ public class Tokenizer {
      * 
      * @return set of words
      */
-    public HashSet<String> tokenize() {
+    public HashSet<String> tokenize(String doc) {
         doc = doc.toLowerCase();
         HashSet<String> wordsSet = new HashSet<>();
         String[] words = doc.split("\\W+");
