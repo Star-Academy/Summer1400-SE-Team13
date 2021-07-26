@@ -23,7 +23,7 @@ public class FilterHandler {
         return result;
     }
 
-    public void addToSeparateSets(String[] words) {
+    private void addToSeparateSets(String[] words) {
         char PLUS_SIGN = '+';
         char MINUS_SIGN = '-';
         for (String word : words) {
@@ -36,7 +36,7 @@ public class FilterHandler {
         }
     }
 
-    public void handleFilters() {
+    private void handleFilters() {
         Filter currentFilter;
         for (String word : plus) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
