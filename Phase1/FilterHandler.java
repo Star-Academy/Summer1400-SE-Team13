@@ -24,12 +24,12 @@ public class FilterHandler {
     }
 
     private void addToSeparateSets(String[] words) {
-        char PLUS_SIGN = '+';
-        char MINUS_SIGN = '-';
+        char plusSign = '+';
+        char minusSign = '-';
         for (String word : words) {
-            if (word.charAt(0) == PLUS_SIGN)
+            if (word.charAt(0) == plusSign)
                 plus.add(word.substring(1));
-            else if (word.charAt(0) == MINUS_SIGN)
+            else if (word.charAt(0) == minusSign)
                 minus.add(word.substring(1));
             else
                 noSign.add(word);
