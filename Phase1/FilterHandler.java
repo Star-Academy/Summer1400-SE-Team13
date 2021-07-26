@@ -28,9 +28,9 @@ public class FilterHandler {
         char MINUS_SIGN = '-';
         for (String word : words) {
             if (word.charAt(0) == PLUS_SIGN)
-                plus.add(word.substring(1, word.length()));
+                plus.add(word.substring(1));
             else if (word.charAt(0) == MINUS_SIGN)
-                minus.add(word.substring(1, word.length()));
+                minus.add(word.substring(1));
             else
                 noSign.add(word);
         }
