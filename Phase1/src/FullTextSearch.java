@@ -10,7 +10,7 @@ public class FullTextSearch {
     }
 
     private void loadDocs() {
-        String FILE_ADDRESS = "EnglishData";
+        String FILE_ADDRESS = "phase1/EnglishData";
         DocsFileReader fileReader = new DocsFileReader(FILE_ADDRESS);
         HashMap<Integer, String> initialDocs = fileReader.readContent();
         for (int id : initialDocs.keySet()) {
