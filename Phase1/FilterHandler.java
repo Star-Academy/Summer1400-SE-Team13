@@ -41,11 +41,14 @@ public class FilterHandler {
         }
     }
 
-    private void handleFilters() {
+    public void handlePlusFilter() {
         for (String word : plus) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
             plusFilter.filter(result, docs);
         }
+    }
+
+    public void handleNoSignFilter() {
         for (String word : noSign) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
             if (result.isEmpty() && docs != null) {
@@ -54,11 +57,20 @@ public class FilterHandler {
             }
             noSignFilter.filter(result, docs);
         }
+    }
+
+    public void handleMinusFilter() {
         for (String word : minus) {
             if (!result.isEmpty()) {
                 HashSet<Integer> docs = invertedIndex.getWordDocs(word);
                 minusFilter.filter(result, docs);
             }
         }
+    }
+
+    private void handleFilters() {
+        handlePlusFilter();
+        handleNoSignFilter();
+        handleMinusFilter();
     }
 }
