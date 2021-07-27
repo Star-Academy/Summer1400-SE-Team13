@@ -48,7 +48,7 @@ public class FilterHandler {
         }
         for (String word : noSign) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
-            if (result.isEmpty()) {
+            if (result.isEmpty() && docs != null) {
                 result = docs;
                 continue;
             }
