@@ -1,16 +1,16 @@
 import java.util.*;
 
 public class FullTextSearch {
-    private String command;
-    private InvertedIndex invertedIndex;
+    private final String command;
+    private final InvertedIndex invertedIndex;
 
-    public FullTextSearch(String command) {
+    public FullTextSearch(String command, InvertedIndex invertedIndex) {
         this.command = command;
-        invertedIndex = new InvertedIndex();
+        this.invertedIndex = invertedIndex;
     }
 
     private void loadDocs() {
-        String fileAddress = "Phase1/EnglishData";
+        final String fileAddress = "Phase1/EnglishData";
         DocsFileReader fileReader = new DocsFileReader(fileAddress);
         HashMap<Integer, String> initialDocs = fileReader.readContent();
         for (int id : initialDocs.keySet()) {
@@ -21,23 +21,14 @@ public class FullTextSearch {
         }
     }
 
-    public void run() {
+    public HashSet<Integer> run() {
         loadDocs();
-        String[] words = split();
+        String[] words = splitCommand();
         FilterHandler filterHandler = new FilterHandler(words, invertedIndex);
-        printResponse(filterHandler.filter());
+        return filterHandler.filter();
     }
 
-    private String[] split() {
+    private String[] splitCommand() {
         return command.split(" ");
-    }
-
-    private void printResponse(HashSet<Integer> result) {
-        if (result.isEmpty())
-            System.out.println("no doc found!");
-        else {
-            System.out.println(result.size());
-            System.out.println(result);
-        }
     }
 }
