@@ -40,5 +40,4 @@ public class FullTextSearch {
             System.out.println(result);
         }
     }
-
 }
