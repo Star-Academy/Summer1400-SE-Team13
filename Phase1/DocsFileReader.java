@@ -14,12 +14,10 @@ public class DocsFileReader {
         for (File file : files) {
             try {
                 Scanner scanner = new Scanner(file);
-                StringBuilder content = new StringBuilder();
-                while (scanner.hasNextLine()) {
-                    content.append(" ").append(scanner.nextLine());
-                }
-                filesContents.put(Integer.parseInt(file.getName()), content.toString().trim());
+                scanner.useDelimiter("\\Z");
+                String fileContent = (scanner.next());
                 scanner.close();
+                filesContents.put(Integer.parseInt(file.getName()), fileContent);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
