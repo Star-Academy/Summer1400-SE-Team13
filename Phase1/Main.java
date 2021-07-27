@@ -5,9 +5,7 @@ public class Main {
     static void printResult(HashSet<Integer> result) {
         if (result.isEmpty()) {
             System.out.println("no doc found!");
-        }
-
-        else {
+        } else {
             System.out.println(result.size());
             System.out.println(result);
         }
