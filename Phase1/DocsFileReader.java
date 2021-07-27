@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class DocsFileReader {
-    private String mainPath;
+    private final String mainPath;
 
     public DocsFileReader(String path) {
         mainPath = path;
@@ -10,7 +10,8 @@ public class DocsFileReader {
 
     public HashMap<Integer, String> readContent() {
         HashMap<Integer, String> filesContents = new HashMap<>();
-        for (File file : this.getFiles()) {
+        File[] files = new File(mainPath).listFiles();
+        for (File file : files) {
             try {
                 Scanner scanner = new Scanner(file);
                 StringBuilder content = new StringBuilder();
@@ -22,12 +23,7 @@ public class DocsFileReader {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
         return filesContents;
-    }
-
-    public File[] getFiles() {
-        return new File(mainPath).listFiles();
     }
 }
