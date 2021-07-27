@@ -4,20 +4,25 @@ public class FilterHandler {
     private final HashSet<String> plus;
     private final HashSet<String> minus;
     private final HashSet<String> noSign;
-    private HashSet<Integer> result;
     private final InvertedIndex invertedIndex;
-    private final String[] words;
+    private final Filter plusFilter;
+    private final Filter noSignFilter;
+    private final Filter minusFilter;
+    private HashSet<Integer> result;
 
-    public FilterHandler(String[] words, InvertedIndex invertedIndex) {
-        this.words = words;
+    public FilterHandler(InvertedIndex invertedIndex, Filter plusFilter, Filter noSignFilter, Filter minusFilter) {
+        this.invertedIndex = invertedIndex;
+        this.plusFilter = plusFilter;
+        this.noSignFilter = noSignFilter;
+        this.minusFilter = minusFilter;
         plus = new HashSet<>();
         minus = new HashSet<>();
         noSign = new HashSet<>();
         result = new HashSet<>();
-        this.invertedIndex = invertedIndex;
+
     }
 
-    public HashSet<Integer> filter() {
+    public HashSet<Integer> filter(String[] words) {
         addToSeparateSets(words);
         handleFilters();
         return result;
@@ -37,12 +42,10 @@ public class FilterHandler {
     }
 
     private void handleFilters() {
-        Filter plusFilter = new PlusFilter();
         for (String word : plus) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
             plusFilter.filter(result, docs);
         }
-        Filter noSignFilter = new NoSignFilter();
         for (String word : noSign) {
             HashSet<Integer> docs = invertedIndex.getWordDocs(word);
             if (result.isEmpty()) {
@@ -51,7 +54,6 @@ public class FilterHandler {
             }
             noSignFilter.filter(result, docs);
         }
-        Filter minusFilter = new MinusFilter();
         for (String word : minus) {
             if (!result.isEmpty()) {
                 HashSet<Integer> docs = invertedIndex.getWordDocs(word);

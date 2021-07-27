@@ -3,19 +3,24 @@ import java.util.*;
 public class FullTextSearch {
     private final String command;
     private final InvertedIndex invertedIndex;
+    private final Tokenizer tokenizer;
+    private final DocsFileReader docsFileReader;
+    private final FilterHandler filterHandler;
 
-    public FullTextSearch(String command, InvertedIndex invertedIndex) {
+    public FullTextSearch(String command, InvertedIndex invertedIndex, Tokenizer tokenizer,
+            DocsFileReader docsFileReader, FilterHandler filterHandler) {
         this.command = command;
         this.invertedIndex = invertedIndex;
+        this.tokenizer = tokenizer;
+        this.docsFileReader = docsFileReader;
+        this.filterHandler = filterHandler;
     }
 
-    private void loadDocs() {
+    public void loadDocs() {
         final String fileAddress = "Phase1/EnglishData";
-        DocsFileReader fileReader = new DocsFileReader(fileAddress);
-        HashMap<Integer, String> initialDocs = fileReader.readContent();
+        HashMap<Integer, String> initialDocs = docsFileReader.readContent(fileAddress);
         for (int id : initialDocs.keySet()) {
             String docString = initialDocs.get(id);
-            Tokenizer tokenizer = new Tokenizer();
             HashSet<String> wordsSet = tokenizer.tokenize(docString);
             invertedIndex.addDoc(wordsSet, id);
         }
@@ -24,11 +29,10 @@ public class FullTextSearch {
     public HashSet<Integer> run() {
         loadDocs();
         String[] words = splitCommand();
-        FilterHandler filterHandler = new FilterHandler(words, invertedIndex);
-        return filterHandler.filter();
+        return filterHandler.filter(words);
     }
 
-    private String[] splitCommand() {
+    public String[] splitCommand() {
         return command.split(" ");
     }
 }

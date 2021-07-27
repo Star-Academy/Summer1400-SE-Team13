@@ -2,15 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class DocsFileReader {
-    private final String mainPath;
 
-    public DocsFileReader(String path) {
-        mainPath = path;
+    public DocsFileReader() {
     }
 
-    public HashMap<Integer, String> readContent() {
+    public HashMap<Integer, String> readContent(String filePath) {
         HashMap<Integer, String> filesContents = new HashMap<>();
-        File[] files = new File(mainPath).listFiles();
+        File[] files = new File(filePath).listFiles();
         for (File file : files) {
             try {
                 Scanner scanner = new Scanner(file);
