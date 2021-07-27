@@ -14,9 +14,7 @@ public class Tokenizer {
         doc = doc.toLowerCase();
         HashSet<String> wordsSet = new HashSet<>();
         String[] words = doc.split("\\W+");
-        for (int j = 0; j < words.length; j++) {
-            wordsSet.add(words[j]);
-        }
+        Collections.addAll(wordsSet, words);
         return wordsSet;
     }
 }
