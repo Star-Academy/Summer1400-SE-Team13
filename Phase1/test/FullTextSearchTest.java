@@ -2,9 +2,9 @@ package test;
 
 import src.*;
 import java.util.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
+import org.junit.Test;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
 
 public class FullTextSearchTest {
     private InvertedIndex invertedIndex;
@@ -28,6 +28,7 @@ public class FullTextSearchTest {
 
     @Test
     public void testFullTextSearch() {
+        initialization();
         ArrayList<String> tests = new ArrayList<>(
                 Arrays.asList("+hello -bye how", "Hello", "-bye", "-Raha -melika", "test"));
         ArrayList<HashSet<Integer>> answers = new ArrayList<>(
@@ -39,5 +40,4 @@ public class FullTextSearchTest {
             assertEquals(answers.get(i), result);
         }
     }
-
 }
