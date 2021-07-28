@@ -1,4 +1,5 @@
 package src;
+
 import java.util.*;
 
 public class FullTextSearch {
@@ -18,7 +19,7 @@ public class FullTextSearch {
     }
 
     public void loadDocs() {
-        final String fileAddress = "Phase1/EnglishData";
+        final String fileAddress = "C:/Users/ASUS/Desktop/Summer1400-SE-Team13/Summer1400-SE-Team13/Phase1/test/SampleFolder";
         HashMap<Integer, String> initialDocs = docsFileReader.readContent(fileAddress);
         for (int id : initialDocs.keySet()) {
             String docString = initialDocs.get(id);
