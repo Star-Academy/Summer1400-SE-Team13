@@ -1,4 +1,5 @@
 package src;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -38,5 +39,9 @@ public class InvertedIndex {
      */
     public boolean containsWord(String word) {
         return wordsMap.containsKey(word);
+    }
+
+    public HashMap<String, HashSet<Integer>> getWordsMap() {
+        return wordsMap;
     }
 }
