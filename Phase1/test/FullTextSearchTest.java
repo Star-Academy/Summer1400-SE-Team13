@@ -29,13 +29,10 @@ public class FullTextSearchTest {
     @Test
     public void testFullTextSearch() {
         initialization();
-        ArrayList<String> tests = new ArrayList<>(
-                Arrays.asList("+hello -bye how", "Hello", "-bye", "-Raha -melika", "test"));
-        ArrayList<HashSet<Integer>> answers = new ArrayList<>(
-                Arrays.asList(new HashSet<>(), new HashSet<>(1, 2), new HashSet<>(), new HashSet<>(), new HashSet<>()));
-        for (Integer i = 0; i < 3; i++) {
-            FullTextSearch fullTextSearch = new FullTextSearch(tests.get(i), invertedIndex, tokenizer, docsFileReader,
-                    filterHandler);
+        ArrayList<String> tests = new ArrayList<>(Arrays.asList("+hello -bye how", "Hello", "-bye", "-Raha -melika", "test"));
+        ArrayList<HashSet<Integer>> answers = new ArrayList<>(Arrays.asList(new HashSet<>(), new HashSet<>(1, 2), new HashSet<>(), new HashSet<>(), new HashSet<>()));
+        for (int i = 0; i < 3; i++) {
+            FullTextSearch fullTextSearch = new FullTextSearch(tests.get(i), invertedIndex, tokenizer, docsFileReader, filterHandler);
             HashSet<Integer> result = fullTextSearch.run();
             assertEquals(answers.get(i), result);
         }
