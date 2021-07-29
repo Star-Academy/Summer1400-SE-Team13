@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class InvertedIndex {
-    private HashMap<String, HashSet<Integer>> wordsMap;
+    private final HashMap<String, HashSet<Integer>> wordsMap;
 
     public InvertedIndex() {
         wordsMap = new HashMap<>();
@@ -29,16 +29,7 @@ public class InvertedIndex {
     }
 
     public HashSet<Integer> getWordDocs(String word) {
-        if (containsWord(word))
-            return wordsMap.get(word);
-        return null;
-    }
-
-    /**
-     * check if the word exists in docs
-     */
-    public boolean containsWord(String word) {
-        return wordsMap.containsKey(word);
+        return wordsMap.getOrDefault(word, null);
     }
 
     public HashMap<String, HashSet<Integer>> getWordsMap() {
