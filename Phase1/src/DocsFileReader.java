@@ -19,7 +19,7 @@ public class DocsFileReader {
                 scanner.close();
                 filesContents.put(Integer.parseInt(file.getName()), fileContent);
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return filesContents;
