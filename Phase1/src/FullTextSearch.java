@@ -18,7 +18,7 @@ public class FullTextSearch {
         this.filterHandler = filterHandler;
     }
 
-    public void loadDocs() {
+    private void loadDocs() {
         final String fileAddress = "C:/Users/ASUS/Desktop/Summer1400-SE-Team13/Summer1400-SE-Team13/Phase1/test/SampleFolder";
         HashMap<Integer, String> initialDocs = docsFileReader.readContent(fileAddress);
         for (int id : initialDocs.keySet()) {
@@ -34,7 +34,7 @@ public class FullTextSearch {
         return filterHandler.filter(words);
     }
 
-    public String[] splitCommand() {
+    private String[] splitCommand() {
         return command.split(" ");
     }
 }
