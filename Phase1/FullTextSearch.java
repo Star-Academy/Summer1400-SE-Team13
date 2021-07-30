@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class FullTextSearch {
+<<<<<<< HEAD
     private static final char PLUS_SIGN = '+';
     private static final char MINUS_SIGN = '-';
     private String command;
@@ -8,27 +9,41 @@ public class FullTextSearch {
     private HashSet<String> minus;
     private HashSet<String> noSign;
     private HashSet<Integer> result;
+=======
+    private final String command;
+    private final InvertedIndex invertedIndex;
+    private final Tokenizer tokenizer;
+    private final DocsFileReader docsFileReader;
+    private final FilterHandler filterHandler;
+>>>>>>> Phase02
 
-    public FullTextSearch(String command) {
+    public FullTextSearch(String command, InvertedIndex invertedIndex, Tokenizer tokenizer,
+            DocsFileReader docsFileReader, FilterHandler filterHandler) {
         this.command = command;
+<<<<<<< HEAD
         plus = new HashSet<>();
         minus = new HashSet<>();
         noSign = new HashSet<>();
         result = new HashSet<>();
+=======
+        this.invertedIndex = invertedIndex;
+        this.tokenizer = tokenizer;
+        this.docsFileReader = docsFileReader;
+        this.filterHandler = filterHandler;
+>>>>>>> Phase02
     }
 
-    public void run() {
-        GetInput getInput = new GetInput("/home/melika/Desktop/codes/codestar/phase1/EnglishData");
-        HashMap<Integer, String> hashMap = getInput.readContent();
-        InvertedIndex invertedIndex = new InvertedIndex();
-
-        for (int id : hashMap.keySet()) {
-            String docString = hashMap.get(id);
-            Tokenizer tokenizer = new Tokenizer(docString);
-            HashSet<String> wordsSet = tokenizer.tokenize();
+    public void loadDocs() {
+        final String fileAddress = "Phase1/EnglishData";
+        HashMap<Integer, String> initialDocs = docsFileReader.readContent(fileAddress);
+        for (int id : initialDocs.keySet()) {
+            String docString = initialDocs.get(id);
+            HashSet<String> wordsSet = tokenizer.tokenize(docString);
             invertedIndex.addDoc(wordsSet, id);
         }
+    }
 
+<<<<<<< HEAD
         split();
         handleFilters(invertedIndex);
 
@@ -38,6 +53,16 @@ public class FullTextSearch {
             TreeSet<Integer> sortedDocs = new TreeSet<Integer>(result);
             System.out.println(sortedDocs);
         }
+=======
+    public HashSet<Integer> run() {
+        loadDocs();
+        String[] words = splitCommand();
+        return filterHandler.filter(words);
+    }
+
+    public String[] splitCommand() {
+        return command.split(" ");
+>>>>>>> Phase02
     }
 
     public void split() {
