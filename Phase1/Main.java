@@ -14,10 +14,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine().toLowerCase();
-<<<<<<< HEAD
-        FullTextSearch fullTextSearch = new FullTextSearch(command);
-        fullTextSearch.run();
-=======
         InvertedIndex invertedIndex = new InvertedIndex();
         DocsFileReader docsFileReader = new DocsFileReader();
         Tokenizer tokenizer = new Tokenizer();
@@ -29,7 +25,6 @@ public class Main {
                 filterHandler);
         HashSet<Integer> result = fullTextSearch.run();
         printResult(result);
->>>>>>> Phase02
         scanner.close();
     }
 }
