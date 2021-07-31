@@ -16,7 +16,7 @@ public class FullTextSearchTest {
     private NoSignFilter noSignFilter;
 
     @Before
-    public void initialization() {
+    public void initialize() {
         invertedIndex = new InvertedIndex();
         tokenizer = new Tokenizer();
         docsFileReader = new DocsFileReader();
@@ -28,7 +28,7 @@ public class FullTextSearchTest {
 
     @Test
     public void testFullTextSearch() {
-        initialization();
+        initialize();
         ArrayList<String> tests = new ArrayList<>(Arrays.asList("+hello -bye how", "Hello", "-bye", "-Raha -melika", "test"));
         ArrayList<HashSet<Integer>> answers = new ArrayList<>(Arrays.asList(new HashSet<>(), new HashSet<>(1, 2), new HashSet<>(), new HashSet<>(), new HashSet<>()));
         for (int i = 0; i < 3; i++) {
