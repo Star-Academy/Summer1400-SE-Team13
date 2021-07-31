@@ -35,6 +35,6 @@ public class FullTextSearch {
     }
 
     private String[] splitCommand() {
-        return command.split(" ");
+        return command.toLowerCase().split(" ");
     }
 }
