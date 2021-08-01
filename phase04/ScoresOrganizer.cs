@@ -1,8 +1,4 @@
 using System;
-using System.IO;
-
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,7 +26,7 @@ namespace phase04
             for(int i = 0; i < 3; i++)
             {
                 Console.WriteLine(StudentsList[i].ToString());
-            }             
+            }  
         }
         public void SortStudentsList(){
             StudentsList.Sort((a, b) => b.GPA.CompareTo(a.GPA));
@@ -43,8 +39,7 @@ namespace phase04
             }
         }
         public void SetGPAs(){
-            foreach(Student student in StudentsList)
-                student.CalculateGPA();
+            StudentsList.ForEach(student => student.CalculateGPA());
         }
         public void Run(FileReader fileReader, DataManager dataManager)
         {
