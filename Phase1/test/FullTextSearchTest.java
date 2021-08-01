@@ -43,8 +43,7 @@ public class FullTextSearchTest {
         // assertEquals(answers.get(i), result);
         // }
         HashSet<Integer> expect = new HashSet<>(Arrays.asList(1, 2));
-        FullTextSearch fullTextSearch = new FullTextSearch("hello", invertedIndex, tokenizer, docsFileReader,
-                filterHandler);
+        FullTextSearch fullTextSearch = new FullTextSearch("hello", invertedIndex, tokenizer, docsFileReader, filterHandler);
         assertEquals(expect, fullTextSearch.run());
     }
 }
