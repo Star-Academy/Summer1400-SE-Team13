@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Summer1400-SE-Team13\\Summer1400-SE-Team13-2\\phase04\\phase04.csproj": {}
   },
   "projects": {
-    "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Summer1400-SE-Team13\\Summer1400-SE-Team13-2\\phase04\\phase04.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Summer1400-SE-Team13\\Summer1400-SE-Team13-2\\phase04\\phase04.csproj",
         "projectName": "phase04",
-        "projectPath": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj",
-        "packagesPath": "/home/melika/.nuget/packages/",
-        "outputPath": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/obj/",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Summer1400-SE-Team13\\Summer1400-SE-Team13-2\\phase04\\phase04.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Summer1400-SE-Team13\\Summer1400-SE-Team13-2\\phase04\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/melika/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/132/sdk/5.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
