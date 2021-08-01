@@ -1,11 +1,4 @@
-﻿using System;
-using System.IO;
-
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Collections.Generic;
-
-namespace phase04
+﻿namespace phase04
 {
     class Program
     {
