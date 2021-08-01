@@ -1,4 +1,5 @@
-namespace Phase04
+using System.IO;
+namespace phase04 
 {
     class FileReader
     {
@@ -7,3 +8,4 @@ namespace Phase04
         }
     }
 }
+   

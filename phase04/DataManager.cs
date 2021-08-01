@@ -2,19 +2,24 @@ using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace Phase04
+
+namespace phase04
 {
-
     class DataManager
     {
-        private string jsonData {get; set;}
-
-        public List<Student> getData ()
+        public DataManager() 
         {
-            JavaScriptSerializer ser = new JavaScriptSerializer();
-            var r = ser.Deserialize<List<Student>>(jsonData);
         }
-
+        public List<Student> GetStudentsData(string json)
+        {
+            return JsonSerializer.Deserialize<List<Student>>(json);
+        }
+        
+        public List<Grade> GetScoresData(string json) 
+        {
+            return JsonSerializer.Deserialize<List<Grade>>(json);
+        }
     }
 }

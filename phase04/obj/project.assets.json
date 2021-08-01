@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/melika/Desktop/codes/codestar/phase04/phase04.csproj",
+      "projectUniqueName": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj",
       "projectName": "phase04",
-      "projectPath": "/home/melika/Desktop/codes/codestar/phase04/phase04.csproj",
+      "projectPath": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/phase04.csproj",
       "packagesPath": "/home/melika/.nuget/packages/",
-      "outputPath": "/home/melika/Desktop/codes/codestar/phase04/obj/",
+      "outputPath": "/home/melika/Desktop/codes/codestar/cloned/Summer1400-SE-Team13/phase04/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/melika/.nuget/NuGet/NuGet.Config"

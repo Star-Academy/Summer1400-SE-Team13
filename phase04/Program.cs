@@ -1,5 +1,9 @@
 ﻿using System;
-//using System.String;
+using System.IO;
+
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Collections.Generic;
 
 namespace phase04
 {
@@ -7,12 +11,12 @@ namespace phase04
     {
         static void Main(string[] args)
         {
-            string json = File.ReadAllText("Students.json");
-            DataManager dm = new DataManager(json);
-            var studentsList = dm.getData();
-            for(int i = 0; i < studentsList.count; i++){
-                Console.WriteLine(studentsList[i].LastName);
-            }
+            ScoresOrganizer organizer = new ScoresOrganizer();
+
+            FileReader fileReader = new FileReader();
+            DataManager dataManager = new DataManager();
+            
+            organizer.Run(fileReader, dataManager);
         }
     }
 }
