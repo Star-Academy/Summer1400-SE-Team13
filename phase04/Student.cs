@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace phase04 
 {
@@ -10,7 +10,6 @@ namespace phase04
         public int StudentNumber {get; set;}
         private List<double> _Grades;
         public double GPA {set; get;}
-
         public Student(int studentNumber, string firstName, string lastName) {
             GPA = 0;
             StudentNumber = studentNumber;
@@ -18,7 +17,6 @@ namespace phase04
             LastName = lastName;
             _Grades = new List<double>();
         }
-
         public void AddScore(double grade) 
         {
             _Grades.Add(grade);
@@ -26,9 +24,7 @@ namespace phase04
 
         public void CalculateGPA()
         {
-            double gradesSum = 0;
-            foreach(double grade in _Grades)
-                gradesSum += grade;               
+            double gradesSum = _Grades.Sum();            
             GPA = gradesSum/_Grades.Count;
         }
 
