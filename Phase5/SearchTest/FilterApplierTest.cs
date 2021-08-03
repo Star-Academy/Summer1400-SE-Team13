@@ -3,7 +3,7 @@ using NSubstitute;
 using Phase5;
 using Xunit;
 
-namespace SearchTest.TestFiles
+namespace SearchTest
 {
     public class FilterApplierTest
     {
@@ -20,11 +20,10 @@ namespace SearchTest.TestFiles
         [Fact]
         public void FilterApplierTestMethod()
         {
-            FilterApplier _filterApplier = new FilterApplier(_invertedIndex);
+            var filterApplier = new FilterApplier(_invertedIndex);
             var testCommand = new []{"+microsoft", "hello", "-tool"};
-            HashSet<string> expected = new HashSet<string>();
-            expected.Add("File1");
-            Assert.Equal(expected, _filterApplier.Filter(testCommand));
+            var expected = new HashSet<string>(){"File1"};
+            Assert.Equal(expected, filterApplier.Filter(testCommand));
         }
     }
 }
