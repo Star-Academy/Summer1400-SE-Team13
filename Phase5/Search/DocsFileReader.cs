@@ -1,13 +1,24 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-namespace Search
+namespace Phase5
 {
-    public class DocsFileReader : IDocsFileReader
+    public class DocsFileReader
     {
-        public Dictionary<String, String> ReadContent(){
-            Dictionary<String, String> doc = new Dictionary<String, String>();
-            doc.Add("1", "Microsoft have just announced collaborative coding via Live Share.");
-            return doc;
+        public Dictionary<string, string> ReadContent(string path)
+        {
+            var filesContents = new Dictionary<string, string>();
+            var filesAddress = new List<string>();
+            if (File.Exists(path))
+                filesAddress.Add(path);
+
+            else if (Directory.Exists(path))
+                filesAddress.AddRange(Directory.GetFiles(path).ToList());
+
+            foreach (var address in filesAddress)
+                filesContents.Add(Path.GetFileNameWithoutExtension(address), File.ReadAllText(address));
+            return filesContents;
         }
     }
 }
