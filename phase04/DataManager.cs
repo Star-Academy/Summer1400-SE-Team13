@@ -6,17 +6,9 @@ namespace phase04
 {
     class DataManager
     {
-        public DataManager() 
+        public List<T> DeserializeObject<T>(string json)
         {
-        }
-        public List<Student> GetStudentsData(string json)
-        {
-            return JsonSerializer.Deserialize<List<Student>>(json);
-        }
-        
-        public List<Grade> GetScoresData(string json) 
-        {
-            return JsonSerializer.Deserialize<List<Grade>>(json);
+            return JsonSerializer.Deserialize<List<T>>(json);
         }
     }
 }

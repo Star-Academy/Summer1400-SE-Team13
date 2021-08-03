@@ -16,10 +16,10 @@ namespace phase04
         public void GetData(FileReader fileReader, DataManager dataManager)
         {
             string studentsJsonInput = fileReader.ReadData("Students.json");
-            StudentsList = dataManager.GetStudentsData(studentsJsonInput);
+            StudentsList = dataManager.DeserializeObject<Student>(studentsJsonInput);
 
             string scoresJsonInput = fileReader.ReadData("Scores.json");
-            ScoresList = dataManager.GetScoresData(scoresJsonInput);   
+            ScoresList = dataManager.DeserializeObject<Grade>(scoresJsonInput);   
         }
         public void PrintOutput()
         {
@@ -28,17 +28,20 @@ namespace phase04
                 Console.WriteLine(StudentsList[i].ToString());
             }  
         }
-        public void SortStudentsList(){
+        public void SortStudentsList()
+        {
             StudentsList.Sort((a, b) => b.GPA.CompareTo(a.GPA));
         }
-        public void AddGrades(){
+        public void AddGrades()
+        {
             foreach(Grade grade in ScoresList)
             {
                 Student student = FindStudent(grade.StudentNumber);
                 student.AddScore(grade.Score);
             }
         }
-        public void SetGPAs(){
+        public void SetGPAs()
+        {
             StudentsList.ForEach(student => student.CalculateGPA());
         }
         public void Run(FileReader fileReader, DataManager dataManager)
