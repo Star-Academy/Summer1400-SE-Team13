@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q1sl8pW+lgXF8uqIVN7/iqxBIixJfuK6G0cvqrMlMDW6MUk53Uatvqo+OzRoPmFq0P4Q10sExk+bHilHtFinxA==",
+  "dgSpecHash": "7tcxVhYshSVlFLzJ+aC9QVFFbWcfHmw24GsT6vl4Z0v2+/nqASzdkEOnxE7Nnv2bZSWp7nY7R66xE4jSV3ObpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj",
+  "projectFilePath": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

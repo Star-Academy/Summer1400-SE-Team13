@@ -1,20 +1,72 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\RiderProjects\\Phase5\\SearchTest\\SearchTest.csproj": {}
+    "/home/melika/RiderProjects/phase05/Phase5/SearchTest/SearchTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\RiderProjects\\Phase5\\SearchTest\\SearchTest.csproj": {
+    "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\SearchTest\\SearchTest.csproj",
-        "projectName": "SearchTest",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\SearchTest\\SearchTest.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\SearchTest\\obj\\",
+        "projectUniqueName": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj",
+        "projectName": "Search",
+        "projectPath": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj",
+        "packagesPath": "/home/melika/.nuget/packages/",
+        "outputPath": "/home/melika/RiderProjects/phase05/Phase5/Search/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/melika/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/5.0.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/melika/RiderProjects/phase05/Phase5/SearchTest/SearchTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/melika/RiderProjects/phase05/Phase5/SearchTest/SearchTest.csproj",
+        "projectName": "SearchTest",
+        "projectPath": "/home/melika/RiderProjects/phase05/Phase5/SearchTest/SearchTest.csproj",
+        "packagesPath": "/home/melika/.nuget/packages/",
+        "outputPath": "/home/melika/RiderProjects/phase05/Phase5/SearchTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/melika/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -26,8 +78,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj"
+              "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj": {
+                "projectPath": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj"
               }
             }
           }
@@ -82,59 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj",
-        "projectName": "Search",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

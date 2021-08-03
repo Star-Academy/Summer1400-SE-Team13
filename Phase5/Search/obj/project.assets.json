@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+    "/home/melika/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj",
+      "projectUniqueName": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj",
       "projectName": "Search",
-      "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\Search.csproj",
-      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Phase5\\Search\\obj\\",
+      "projectPath": "/home/melika/RiderProjects/phase05/Phase5/Search/Search.csproj",
+      "packagesPath": "/home/melika/.nuget/packages/",
+      "outputPath": "/home/melika/RiderProjects/phase05/Phase5/Search/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/melika/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/current/sdk/5.0.302/RuntimeIdentifierGraph.json"
       }
     }
   }

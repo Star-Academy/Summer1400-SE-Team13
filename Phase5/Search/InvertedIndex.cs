@@ -2,7 +2,7 @@
 
 namespace Phase5
 {
-    public class InvertedIndex
+    public class InvertedIndex : IInvertedIndex
     {
         private readonly Dictionary<string, HashSet<string>> _wordsMap;
 

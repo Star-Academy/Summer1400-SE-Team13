@@ -1,0 +1,16 @@
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search.deps.json
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search.runtimeconfig.json
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search.runtimeconfig.dev.json
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search.dll
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/ref/Search.dll
+/home/melika/RiderProjects/phase05/Phase5/Search/bin/Debug/net5.0/Search.pdb
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.csproj.AssemblyReference.cache
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.GeneratedMSBuildEditorConfig.editorconfig
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.AssemblyInfoInputs.cache
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.AssemblyInfo.cs
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.csproj.CoreCompileInputs.cache
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.dll
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/ref/Search.dll
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.pdb
+/home/melika/RiderProjects/phase05/Phase5/Search/obj/Debug/net5.0/Search.genruntimeconfig.cache
