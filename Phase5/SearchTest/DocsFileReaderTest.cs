@@ -1,29 +1,36 @@
+﻿using System.Collections.Generic;
+using Phase5;
 using Xunit;
-using System.Collections.Generic;
-
-
 namespace SearchTest
 {
     public class DocsFileReaderTest
     {
-        private readonly DocsFileReader _fileReader;
-        public DocsFileReader()
+        private readonly DocsFileReader _docsFileReader;
+
+        public DocsFileReaderTest()
         {
-            _fileReader = new DocsFileReader();
+            _docsFileReader = new DocsFileReader();
         }
         [Fact]
         public void TestReadContentFromSingleFile()
         {
-            Dictionary<string, string> expected = new Dictionary<string, string>();
-            expected.Add("File1", "Microsoft have just announced collaborative coding via Live Share.");
-            Assert.Equal(expected, _fileReader.ReadContent("Phase5\TestFiles\File1"));
+            var expected = new Dictionary<string, string>
+            {
+                {"File1", "Microsoft have just announced collaborative coding via Live Share."}
+            };
+            Assert.Equal(expected, _docsFileReader.ReadContent("TestFiles/File1.txt"));
         }
 
         [Fact]
         public void TestReadContentFromFolder()
         {
-
+            var expected = new Dictionary<string, string>
+            {
+                {"File1", "Microsoft have just announced collaborative coding via Live Share."},
+                {"File2", "Hello World!"},
+                {"File3", "Xunit is a free and open-source unit testing tool."}
+            };
+            Assert.Equal(expected, _docsFileReader.ReadContent("TestFiles"));
         }
-    
     }
 }

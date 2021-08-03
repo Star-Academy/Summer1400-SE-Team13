@@ -24,4 +24,16 @@
       <ProjectReference Include="..\Search\Search.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="TestFiles\File2.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\File3.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\File1.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
