@@ -3,41 +3,41 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Phase5
 {
-    public class FilterApplier
+    public class FilterApplier : IFilterApplier
     {
-        private IInvertedIndex _invertedIndex;
-        private HashSet<string> PlusCommandWords;
-        private HashSet<string> MinusCommandWords;
-        private HashSet<string> NoSignCommandWords;
+        private readonly IInvertedIndex _invertedIndex;
+        private readonly HashSet<string> _plusCommandWords;
+        private readonly HashSet<string> _minusCommandWords;
+        private readonly HashSet<string> _noSignCommandWords;
 
-        private readonly char PLUS_SIGN = '+';
-        private readonly char MINUS_SIGN = '-';
-        private readonly char NO_SIGN = ' ';
+        private const char PlusSign = '+';
+        private const char MinusSign = '-';
+        private const char NoSign = ' ';
         public FilterApplier(IInvertedIndex invertedIndex)
         {
             _invertedIndex = invertedIndex;
-            PlusCommandWords = new HashSet<string>();
-            MinusCommandWords = new HashSet<string>();
-            NoSignCommandWords = new HashSet<string>();
+            _plusCommandWords = new HashSet<string>();
+            _minusCommandWords = new HashSet<string>();
+            _noSignCommandWords = new HashSet<string>();
         }
 
         private void SplitCommandWords(string[] commandWords)
         {
             foreach (string word in commandWords) {
-                if (word[0] == PLUS_SIGN)
-                    PlusCommandWords.Add(word.Substring(1));
-                else if (word[0] == MINUS_SIGN)
-                    MinusCommandWords.Add(word.Substring(1));
+                if (word[0] == PlusSign)
+                    _plusCommandWords.Add(word.Substring(1));
+                else if (word[0] == MinusSign)
+                    _minusCommandWords.Add(word.Substring(1));
                 else
-                    NoSignCommandWords.Add(word);
+                    _noSignCommandWords.Add(word);
             }
         }
 
         private HashSet<string> FindDocs(char sign)
         {
-            HashSet<string> wordsDocs = new HashSet<string>();
-            HashSet<string> commandWords = (sign == PLUS_SIGN ? PlusCommandWords :
-                sign == MINUS_SIGN ? MinusCommandWords : NoSignCommandWords);
+            var wordsDocs = new HashSet<string>();
+            var commandWords = (sign == PlusSign ? _plusCommandWords :
+                sign == MinusSign ? _minusCommandWords : _noSignCommandWords);
             foreach (var word in commandWords)
             {
                 wordsDocs.UnionWith(_invertedIndex.GetWordDocs(word));
@@ -47,11 +47,11 @@ namespace Phase5
         public HashSet<string> Filter(string[] commandWords)
         {
             SplitCommandWords(commandWords);
-            HashSet<string> plusCommandWordsDocs = FindDocs(PLUS_SIGN);
-            HashSet<string> minusCommandWordsDocs = FindDocs(MINUS_SIGN);
-            HashSet<string> noSignCommandWordsDocs = FindDocs(NO_SIGN);
+            var plusCommandWordsDocs = FindDocs(PlusSign);
+            var minusCommandWordsDocs = FindDocs(MinusSign);
+            var noSignCommandWordsDocs = FindDocs(NoSign);
 
-            HashSet<string> result = new HashSet<string>();
+            var result = new HashSet<string>();
             if (noSignCommandWordsDocs.Contains(null))
             {
                 return result;
