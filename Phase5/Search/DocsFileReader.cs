@@ -4,26 +4,30 @@ using System.Linq;
 
 namespace Phase5
 {
-    public class DocsFileReader
+    public class DocsFileReader : IDocsFileReader
     {
-        public Dictionary<string, string> ReadContent(string path)
-        {
-            var filesAddress = GetAllFiles(path);
-            var filesContents = new Dictionary<string, string>();
+        private readonly string _filePath;
 
-            foreach (var address in filesAddress)
-                filesContents.Add(Path.GetFileNameWithoutExtension(address), File.ReadAllText(address));
-            return filesContents;
+        public DocsFileReader(string filePath)
+        {
+            _filePath = filePath;
+        }
+    
+        public Dictionary<string, string> ReadContent()
+        {
+            var filesAddress = GetAllFiles();
+
+            return filesAddress.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText);
         }
 
-        private List<string> GetAllFiles(string path)
+        private IEnumerable<string> GetAllFiles()
         {
             var filesAddress = new List<string>();
-            if (File.Exists(path))
-                filesAddress.Add(path);
+            if (File.Exists(_filePath))
+                filesAddress.Add(_filePath);
 
-            else if (Directory.Exists(path))
-                filesAddress.AddRange(Directory.GetFiles(path).ToList());
+            else if (Directory.Exists(_filePath))
+                filesAddress.AddRange(Directory.GetFiles(_filePath).ToList());
             else
                 throw new IOException("File not found!");
             
