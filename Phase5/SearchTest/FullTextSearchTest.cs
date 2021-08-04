@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using NSubstitute;
 using Phase5;
 using Xunit;
@@ -57,10 +55,8 @@ namespace SearchTest
 
         private void SetupFilterApplier()
         {
-            string[] temp = new string[1];
-            temp[0] = "hello";
             _filterApplier.Filter(new[] {"hello", "+java", "-sample"}).Returns(new HashSet<string>(){"File1"});
-            _filterApplier.Filter(temp).Returns(new HashSet<string>() {"File1", "File2"});
+            _filterApplier.Filter(new []{"hello"}).Returns(new HashSet<string>() {"File1", "File2"});
             _filterApplier.Filter(new[] {"+java +python"}).Returns(new HashSet<string>() {"File1", "File2"});
         }
 
