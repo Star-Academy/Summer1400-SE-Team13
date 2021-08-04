@@ -33,33 +33,57 @@ namespace Phase5
             }
         }
 
-        private HashSet<string> FindDocs(char sign)
+        private HashSet<string> FindDocs(char wordsSign)
         {
             var wordsDocs = new HashSet<string>();
-            var commandWords = (sign == PlusSign ? _plusCommandWords :
-                sign == MinusSign ? _minusCommandWords : _noSignCommandWords);
+            var commandWords = (wordsSign == PlusSign ? _plusCommandWords :
+                wordsSign == MinusSign ? _minusCommandWords : _noSignCommandWords);
             foreach (var word in commandWords)
             {
-                wordsDocs.UnionWith(_invertedIndex.GetWordDocs(word));
+                HashSet<string> wordDocs = _invertedIndex.GetWordDocs(word);
+                if (wordDocs != null)
+                {
+                    if (wordsSign == PlusSign || wordsSign == MinusSign)
+                    {
+                        wordsDocs.UnionWith(wordDocs);
+                    }
+                    else
+                    {
+                        if (wordsDocs.Count > 0)
+                        {
+                            wordsDocs.IntersectWith(wordDocs);
+                        }
+                        else
+                        {
+                            wordsDocs.UnionWith(wordDocs);
+                        }
+                    }
+                }
+                    
             }
             return wordsDocs;
-        }
+        } 
         public HashSet<string> Filter(string[] commandWords)
         {
             SplitCommandWords(commandWords);
             var plusCommandWordsDocs = FindDocs(PlusSign);
             var minusCommandWordsDocs = FindDocs(MinusSign);
             var noSignCommandWordsDocs = FindDocs(NoSign);
-
             var result = new HashSet<string>();
-            if (noSignCommandWordsDocs.Contains(null))
+            if (_noSignCommandWords.Count > 0 && noSignCommandWordsDocs.Contains(null))
             {
                 return result;
             }
-
-            result = plusCommandWordsDocs;
-            result.IntersectWith(noSignCommandWordsDocs);
-            //result.RemoveWhere(MinusCommandWordsDocsContains);
+            result = (plusCommandWordsDocs.Count > 0? plusCommandWordsDocs: noSignCommandWordsDocs);
+            if (_noSignCommandWords.Count > 0)
+            {
+                result.IntersectWith(noSignCommandWordsDocs);
+                result.UnionWith(noSignCommandWordsDocs);
+            }
+            foreach (var word in minusCommandWordsDocs)
+            {
+                result.Remove(word);
+            }
             return result;
         }
     }
