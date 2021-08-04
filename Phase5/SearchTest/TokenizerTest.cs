@@ -15,7 +15,7 @@ namespace SearchTest
         [Fact]
         public void TestTokenizeMethod()
         {
-            var testString = "Hello-hi, how? java*python! test.";
+            const string testString = "Hello-hi, how? java*python! test.";
             var expected = new HashSet<string>(){"hello", "hi", "how","java","python","test"};
             Assert.Equal(expected, _tokenizer.Tokenize(testString));
         }
