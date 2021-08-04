@@ -32,7 +32,7 @@ namespace Phase5
         }
         public HashSet<string> GetWordDocs(string word)
         {
-            return _wordsMap.GetValueOrDefault(word, null);
+            return _wordsMap.GetValueOrDefault(word);
         }
 
         public Dictionary<string, HashSet<string>> GetWordsMap()
