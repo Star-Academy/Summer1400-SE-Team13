@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using NSubstitute;
 using Phase5;
 using Xunit;
@@ -16,18 +17,19 @@ namespace SearchTest
         private void SetupInterfaces()
         {
             _invertedIndex.GetWordDocs("microsoft").Returns(new HashSet<string>{"File1.txt"});
-            _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>{"File2.txt"});
+            _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>{"File2.txt", "File3.txt"});
             _invertedIndex.GetWordDocs("tool").Returns(new HashSet<string>{"File3.txt"});
             _invertedIndex.GetWordDocs("xunit").Returns(new HashSet<string>{"File3.txt"});
         }
-        [Fact]
-        public void FilterApplierTestMethod()
+        [Theory]
+        [InlineData(new string[] {"+microsoft", "-xunit", "hello"}, new string[] {"File2.txt"})]
+        [InlineData(new string[] {"-xunit", "-hello"}, new string[] {})]
+        [InlineData(new string[] {"+microsoft", "xunit", "+hello"}, new string[] {"File3.txt"})]
+        public void FilterApplierTestMethod(string[] testCommand, string[] expected)
         {
             SetupInterfaces();
             var filterApplier = new FilterApplier(_invertedIndex);
-            var testCommand = new []{"+microsoft", "-xunit", "hello"};
-            var expected = new HashSet<string>(){"File2.txt"};
-            Assert.Equal(expected, filterApplier.Filter(testCommand));
+            Assert.Equal(expected.ToHashSet(), filterApplier.Filter(testCommand));
         }
     }
 }

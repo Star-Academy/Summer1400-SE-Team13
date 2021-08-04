@@ -21,7 +21,7 @@ namespace Phase5
             _noSignCommandWords = new HashSet<string>();
         }
 
-        private void SplitCommandWords(string[] commandWords)
+        private void SplitCommandWordsBySign(string[] commandWords)
         {
             foreach (string word in commandWords) {
                 if (word[0] == PlusSign)
@@ -65,7 +65,7 @@ namespace Phase5
         } 
         public HashSet<string> Filter(string[] commandWords)
         {
-            SplitCommandWords(commandWords);
+            SplitCommandWordsBySign(commandWords);
             var plusCommandWordsDocs = FindDocs(PlusSign);
             var minusCommandWordsDocs = FindDocs(MinusSign);
             var noSignCommandWordsDocs = FindDocs(NoSign);
