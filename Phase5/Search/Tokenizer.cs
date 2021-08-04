@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Phase5
 {
-    public class Tokenizer
+    public class Tokenizer : ITokenizer
     {
         public HashSet<string> Tokenize(string doc)
         {
