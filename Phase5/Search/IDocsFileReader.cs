@@ -4,6 +4,6 @@ namespace Phase5
 {
     public interface IDocsFileReader
     {
-        Dictionary<string, string> ReadContent(string path);
+        Dictionary<string, string> ReadContent();
     }
 }

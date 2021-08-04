@@ -18,20 +18,17 @@ namespace Phase5
         }
 
         public HashSet<string> FindCommandResult(string command)
-        {
+         {
             LoadDocs();
-            string[] commandWords = SplitCommand(command);
+            var commandWords = SplitCommand(command);
             return _filterApplier.Filter(commandWords);
         }
 
         private void LoadDocs()
         {
-            const string path = "EnglishData";
-            var docsMap = _docsFileReader.ReadContent(path);
-            foreach (var doc in docsMap)
+            var docsMap = _docsFileReader.ReadContent();
+            foreach (var (docId, docContent) in docsMap)
             {
-                var docContent = doc.Value;
-                var docId = doc.Key;
                 var docWords = _tokenizer.Tokenize(docContent);
                 _invertedIndex.AddDoc(docWords, docId);
             }
@@ -39,7 +36,7 @@ namespace Phase5
 
         private string[] SplitCommand(string command)
         {
-            return command.Split(" ");
+            return command.ToLower().Split(" ");
         }
     }
 }

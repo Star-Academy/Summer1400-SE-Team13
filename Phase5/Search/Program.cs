@@ -9,8 +9,6 @@ namespace Phase5
     {
         static void Main(string[] args)
         {
-            const string fileAddress = "EnglishData";
-            Console.WriteLine(Directory.GetFiles(fileAddress).Length);
         }
     }
 }
