@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Phase5;
 using Xunit;
 namespace SearchTest
@@ -28,9 +29,15 @@ namespace SearchTest
             {
                 {"File1", "Microsoft have just announced collaborative coding via Live Share."},
                 {"File2", "Hello World!"},
-                {"File3", "Xunit is a free and open-source unit testing tool."}
+                {"File3", "Hello, Xunit is a free and open-source unit testing tool."}
             };
             Assert.Equal(expected, _docsFileReader.ReadContent("TestFiles"));
+        }
+
+        [Fact]
+        public void TestReadContentForNotExistingPath_ShouldThrowIOException()
+        {
+            Assert.Throws<IOException>(() => _docsFileReader.ReadContent("TestFiles/File7.txt"));
         }
     }
 }
