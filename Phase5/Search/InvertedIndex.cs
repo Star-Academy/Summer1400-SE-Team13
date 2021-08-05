@@ -15,29 +15,15 @@ namespace Phase5
         {
             foreach (var word in docWords)
             {
-                AddWord(word);
-                AddDocId(word, docId);
+                if (!_wordsMap.ContainsKey(word))
+                    _wordsMap.Add(word, new HashSet<string>());
+                _wordsMap[word].Add(docId);
             }
         }
-
-        private void AddWord(string word)
-        {
-            if (!_wordsMap.ContainsKey(word))
-                _wordsMap.Add(word, new HashSet<string>());
-        }
-
-        private void AddDocId(string word, string id)
-        {
-            _wordsMap[word].Add(id);
-        }
+        
         public HashSet<string> GetWordDocs(string word)
         {
             return _wordsMap.GetValueOrDefault(word);
-        }
-
-        public Dictionary<string, HashSet<string>> GetWordsMap()
-        {
-            return _wordsMap;
         }
     }
 }
