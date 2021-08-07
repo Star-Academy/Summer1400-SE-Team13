@@ -1,56 +1,38 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace phase04
+namespace ConsoleApp1
 {
-    class ScoresOrganizer
+    public class ScoresOrganizer
     {
-        private List<Student> StudentsList;
-        private List<Grade> ScoresList;
+        private readonly List<Student> _studentsList;
+        private readonly List<Grade> _scoresList;
         
-        public Student FindStudent(int studentNumber)
-        {
-            return StudentsList.Where(Student => Student.StudentNumber == studentNumber).First();
+        public ScoresOrganizer(List<Student> studentsList, List<Grade> scoresList){
+            _studentsList = studentsList;
+            _scoresList = scoresList;
         }
-        public void GetData(FileReader fileReader, DataManager dataManager)
-        {
-            string studentsJsonInput = fileReader.ReadData("Students.json");
-            StudentsList = dataManager.DeserializeObject<Student>(studentsJsonInput);
 
-            string scoresJsonInput = fileReader.ReadData("Scores.json");
-            ScoresList = dataManager.DeserializeObject<Grade>(scoresJsonInput);   
-        }
-        public void PrintOutput()
+        private List<Grade> GetStudentsGrades()
         {
-            for(int i = 0; i < 3; i++)
+            return _studentsList.Join(_scoresList, std => std.StudentNumber, grade => grade.StudentNumber, (std, grade) => grade).ToList();
+        }
+
+        public Dictionary<Student, double> SetStudentAverage()
+        {
+            var studentsGrades = GetStudentsGrades();
+            var studentAverageMap = new Dictionary<Student, double>();
+            foreach (var student in _studentsList)
             {
-                Console.WriteLine(StudentsList[i].ToString());
-            }  
-        }
-        public void SortStudentsList()
-        {
-            StudentsList.Sort((a, b) => b.GPA.CompareTo(a.GPA));
-        }
-        public void AddGrades()
-        {
-            foreach(Grade grade in ScoresList)
-            {
-                Student student = FindStudent(grade.StudentNumber);
-                student.AddScore(grade.Score);
+                var studentGrades = studentsGrades.Where(grade => grade.StudentNumber == student.StudentNumber).Select(grade => grade.Score);
+                studentAverageMap[student] = studentGrades.Average();
             }
+            return studentAverageMap;
         }
-        public void SetGPAs()
+
+        public Dictionary<Student, double> GetSortedGPAs()
         {
-            StudentsList.ForEach(student => student.CalculateGPA());
-        }
-        public void Run(FileReader fileReader, DataManager dataManager)
-        {
-            GetData(fileReader, dataManager);
-            AddGrades();
-            SetGPAs();
-            SortStudentsList();
-            PrintOutput();
+            return SetStudentAverage().OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }

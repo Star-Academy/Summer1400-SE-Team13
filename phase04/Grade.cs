@@ -1,15 +1,9 @@
-namespace phase04
+﻿namespace ConsoleApp1
 {
-    class Grade 
-    {   
-        public int StudentNumber {get; set;}
-        public string Lesson {get; set;}
-        public double Score {get; set;}
-        public Grade(int studentNumber, string lesson, double score)
-        {
-            Score = score;
-            Lesson = lesson;
-            StudentNumber = studentNumber;
-        }
-    } 
+    public class Grade
+    {
+        public int StudentNumber { get; set; }
+        public string Lesson { get; set; }
+        public double Score { get; set; }
+    }
 }
