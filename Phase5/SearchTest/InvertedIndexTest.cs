@@ -32,7 +32,7 @@ namespace SearchTest
         public void TestGetNotExistingWordDocuments()
         {
             SetupInvertedIndex();
-            Assert.Null(_invertedIndex.GetWordDocs("word"));
+            Assert.Empty(_invertedIndex.GetWordDocs("word"));
         }
     }
 }

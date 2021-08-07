@@ -23,7 +23,7 @@ namespace Phase5
         
         public HashSet<string> GetWordDocs(string word)
         {
-            return _wordsMap.GetValueOrDefault(word);
+            return _wordsMap.GetValueOrDefault(word, new HashSet<string>());
         }
     }
 }
