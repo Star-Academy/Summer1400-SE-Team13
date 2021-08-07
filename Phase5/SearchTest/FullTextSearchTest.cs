@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NSubstitute;
 using Phase5;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace SearchTest
 {
     public class FullTextSearchTest
     {
-        private readonly ITestOutputHelper _testOutputHelper;
         private readonly IInvertedIndex _invertedIndex;
         private readonly IDocsFileReader _docsFileReader;
         private readonly ITokenizer _tokenizer;
         private readonly IFilterApplier _filterApplier;
         private readonly FullTextSearch _fullTextSearch;
 
-        public FullTextSearchTest(ITestOutputHelper testOutputHelper)
+        public FullTextSearchTest()
         {
-            _testOutputHelper = testOutputHelper;
             _invertedIndex = Substitute.For<IInvertedIndex>();
             _docsFileReader = Substitute.For<IDocsFileReader>();
             _tokenizer = Substitute.For<ITokenizer>();
@@ -68,23 +66,14 @@ namespace SearchTest
             SetupFilterApplier();
         }
 
-        // [Theory]
-        // [InlineData("hello +java -sample", new [] {"File1"})]
-        // [InlineData("hello", new [] {"File1", "File2"})]
-        // [InlineData("+java +python", new [] {"File1", "File2"})]
-        // public void TestFindCommandResult_WithDifferentEntries(string testCommand, string[] expectedResult)
-        // {
-        //     SetupInterfaces();
-        //     Assert.Equal(expectedResult, _fullTextSearch.FindCommandResult(testCommand).ToArray());
-        // }
-
-        [Fact]
-        public void TestFindCommandResult()
+        [Theory]
+        [InlineData("hello +java -sample", new [] {"File1"})]
+        [InlineData("hello", new [] {"File1", "File2"})]
+        [InlineData("+java +python", new [] {"File1", "File2"})]
+        public void TestFindCommandResult_WithDifferentEntries(string testCommand, string[] expectedResult)
         {
             SetupInterfaces();
-            Assert.Equal(new HashSet<string>(){"File1","File2"}, _fullTextSearch.FindCommandResult("+hello"));
+            Assert.Equal(expectedResult, _fullTextSearch.FindCommandResult(testCommand).ToArray());
         }
-        
-        
     }
 }
