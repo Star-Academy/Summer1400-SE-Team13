@@ -1,21 +1,33 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=26f0e264_002D653b_002D4c18_002Db931_002D3516bf284073/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FilterApplierTestMethod #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest.FilterApplierTestMethod&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=03807da7_002Db38f_002D49a5_002D8bb6_002Dfe9b638661fc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestFindCommandResult" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest.TestFindCommandResult&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest.Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8040b5c2_002Dae6a_002D451e_002D83c2_002D13c73ef24578/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FilterApplierTestMethod" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.InvertedIndexTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest.TestReadContentMethodForNotExistingPath&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest.TestReadContentForNotExistingPath_ShouldThrowIOException&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.TokenizerTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest.FilterApplierTestMethod&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=18520b13_002D47ab_002D4b18_002D84a7_002Da84d4ce19013/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FilterApplierTestMethod #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest.FilterApplierTestMethod&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f0912454_002D31d9_002D4d82_002D8e1e_002Dffa8d1cdd516/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FilterApplierTestMethod #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest.FilterApplierTestMethod&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=45a9f74f_002D1357_002D403e_002D9196_002Dabc761a7c634/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FilterApplierTestMethod #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8040b5c2_002Dae6a_002D451e_002D83c2_002D13c73ef24578/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FilterApplierTestMethod" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.InvertedIndexTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest.TestReadContentMethodForNotExistingPath&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest.TestReadContentForNotExistingPath_ShouldThrowIOException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.DocsFileReaderTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.TokenizerTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest.TestFindCommandResult_WithDifferentEntries&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest.Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FullTextSearchTest.TestFindCommandResult&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5AC72C38-AC04-4DCF-BDC0-F4652CC44D34::net5.0::SearchTest.FilterApplierTest.FilterApplierTestMethod&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
