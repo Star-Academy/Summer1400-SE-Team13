@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
@@ -22,7 +23,7 @@ namespace SearchTest
             _invertedIndex.GetWordDocs("xunit").Returns(new HashSet<string>{"File3.txt"});
         }
         [Theory]
-        [InlineData(new [] {"+microsoft", "-xunit", "hello"}, new [] {"File2.txt"})]
+        [InlineData(new [] {"+microsoft", "-xunit", "hello"}, new string[] {})]
         [InlineData(new [] {"-xunit", "-hello"}, new string[] {})]
         [InlineData(new [] {"+microsoft", "xunit", "+hello"}, new [] {"File3.txt"})]
         public void FilterApplierTestMethod(string[] testCommand, string[] expected)
