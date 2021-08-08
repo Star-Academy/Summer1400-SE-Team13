@@ -19,7 +19,7 @@ namespace Phase5
         }
         static void Main(string[] args)
         {
-            const string FilePath = "EnglishData";
+            const string filePath = "EnglishData";
             var command = Console.ReadLine();
             var invertedIndex = new InvertedIndex();
             var docsFileReader = new DocsFileReader(filePath);
