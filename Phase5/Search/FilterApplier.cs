@@ -23,8 +23,8 @@ namespace Phase5
             var minusCommandWordsDocs = GetSignDocs(_minusCommandWords);
             var noSignCommandWordsDocs = GetNoSignDocs(_noSignCommandWords);
             var noSignWithoutMinus = new HashSet<string>(noSignCommandWordsDocs).Except(minusCommandWordsDocs).ToHashSet();
-            return !plusCommandWordsDocs.Any() ? noSignWithoutMinus : noSignWithoutMinus.Intersect(plusCommandWordsDocs).ToHashSet();
-
+            var result = !plusCommandWordsDocs.Any() ? noSignWithoutMinus : noSignWithoutMinus.Intersect(plusCommandWordsDocs).ToHashSet();
+            return result;
         }
         
         private void SplitCommandWordsBySign(string[] commandWords)

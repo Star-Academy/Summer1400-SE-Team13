@@ -73,8 +73,8 @@ namespace SearchTest
         public void TestFindCommandResult_WithDifferentEntries(string testCommand, string[] expectedResult)
         {
             SetupInterfaces();
-            var set = _fullTextSearch.FindCommandResult(testCommand);
-            Assert.Equal(expectedResult, set.ToArray());
+            var actualResult = _fullTextSearch.FindCommandResult(testCommand);
+            Assert.Equal(expectedResult, actualResult.ToArray());
         }
     }
 }
