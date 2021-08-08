@@ -5,34 +5,39 @@ namespace Phase04
 {
     public class ScoresOrganizer
     {
-        private readonly List<Student> _studentsList;
-        private readonly List<Grade> _scoresList;
+        private readonly IEnumerable<Student> _studentsList;
+        private readonly IEnumerable<Grade> _scoresList;
         
-        public ScoresOrganizer(List<Student> studentsList, List<Grade> scoresList){
+        public ScoresOrganizer(IEnumerable<Student> studentsList, IEnumerable<Grade> scoresList){
             _studentsList = studentsList;
             _scoresList = scoresList;
         }
 
-        private List<Grade> GetStudentsGrades()
+        private IEnumerable<StudentAverage> GetStudentsAverage()
         {
-            List<Grade> studentsGrades = _studentsList.Join(_scoresList, std => std.StudentNumber, grade => grade.StudentNumber, (std, grade) => grade).ToList();
-            return studentsGrades;
+            var studentsAverage = _studentsList.GroupJoin(_scoresList,
+                std => std.StudentNumber,
+                grade => grade.StudentNumber,
+                (std, grade) => new StudentAverage(std, grade.Select(grd => grd.Score).Average()));
+            return studentsAverage;
         }
 
-        private Dictionary<Student, double> SetStudentAverage()
-        {
-            var studentsGrades = GetStudentsGrades();
-            var studentAverage = _studentsList.Select(s =>
-                new {
-                Student = s,
-                Average = studentsGrades.Where(p => p.StudentNumber == s.StudentNumber).Select(x => x.Score).Average()
-                 }).ToDictionary(x => x.Student, x => x.Average);
-            return studentAverage;
-        }
+        // private Dictionary<Student, double> GetStudentAverage()
+        // {
+        //     var studentsGrades = GetStudentsGrades();
+        //     var studentAverage = _studentsList.Select(s =>
+        //         new
+        //         {
+        //             Student = s,
+        //             Average = studentsGrades.Where(p => p.StudentNumber == s.StudentNumber).Select(x => x.Score)
+        //                 .Average()
+        //         }).ToDictionary(x => x.Student, x => x.Average);
+        //     return studentAverage;
+        // }
 
-        public Dictionary<Student, double> GetSortedGPAs()
+        public IEnumerable<StudentAverage> GetSortedGPAs()
         {
-            return SetStudentAverage().OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return GetStudentsAverage().OrderByDescending(student => student.Average);
         }
     }
 }

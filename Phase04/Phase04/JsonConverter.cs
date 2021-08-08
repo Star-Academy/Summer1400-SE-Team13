@@ -5,9 +5,9 @@ namespace Phase04
 {
     public class JsonConverter
     {
-        public List<T> GetDeserializedObjects<T>(string jsonFileContent)
+        public IEnumerable<T> GetDeserializedObjects<T>(string jsonFileContent)
         {
-            return JsonSerializer.Deserialize<List<T>>(jsonFileContent);
+            return JsonSerializer.Deserialize<IEnumerable<T>>(jsonFileContent);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Phase04
             var studentsList = jsonConverter.GetDeserializedObjects<Student>(io.GetInput(PathStudents));
             var scoresList = jsonConverter.GetDeserializedObjects<Grade>(io.GetInput(PathScores));
             var scoresOrganizer = new ScoresOrganizer(studentsList, scoresList);
-            io.PrintOutput(scoresOrganizer.GetSortedGPAs().Take(numberOfStudentsToPrint).ToDictionary(x => x.Key, x => x.Value));
+            io.PrintOutput(scoresOrganizer.GetSortedGPAs().Take(numberOfStudentsToPrint));
         }
     }
 }

@@ -14,12 +14,12 @@ namespace Phase04
             return fileContent;
         }
         
-        public void PrintOutput(Dictionary<Student, double> studentsList)
+        public void PrintOutput(IEnumerable<StudentAverage> studentsList)
         {
 
-            foreach(var (student, average) in studentsList)
+            foreach(var std in studentsList)
             {
-                Console.WriteLine(ConstructOutputString(student, average));
+                Console.WriteLine(ConstructOutputString(std.Student, std.Average));
             }
         }
 
