@@ -29,7 +29,7 @@ public class InvertedIndex {
     }
 
     public HashSet<Integer> getWordDocs(String word) {
-        return wordsMap.getOrDefault(word, null);
+        return wordsMap.getOrDefault(word, new HashSet<Integer>());
     }
 
     public HashMap<String, HashSet<Integer>> getWordsMap() {

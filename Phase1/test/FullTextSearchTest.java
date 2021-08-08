@@ -27,17 +27,17 @@ public class FullTextSearchTest {
     }
 
     @Test
-    public void testFullTextSearch_simple() {
-        HashSet<Integer> expect = new HashSet<>(Arrays.asList(1, 2));
-        FullTextSearch fullTextSearch = new FullTextSearch("hello", invertedIndex, tokenizer, docsFileReader,
+    public void testFullTextSearch_complicated() {
+        HashSet<Integer> expect = new HashSet<>();
+        FullTextSearch fullTextSearch = new FullTextSearch("+hello +bye +raha -melika java", invertedIndex, tokenizer, docsFileReader,
                 filterHandler);
         assertEquals(expect, fullTextSearch.run());
     }
 
     @Test
-    public void testFullTextSearch_complicated() {
+    public void testFullTextSearch_plusOnly() {
         HashSet<Integer> expect = new HashSet<>();
-        FullTextSearch fullTextSearch = new FullTextSearch("+hello +bye +raha -melika java", invertedIndex, tokenizer, docsFileReader,
+        FullTextSearch fullTextSearch = new FullTextSearch("+doesntExist", invertedIndex, tokenizer, docsFileReader,
                 filterHandler);
         assertEquals(expect, fullTextSearch.run());
     }
