@@ -12,8 +12,8 @@ public class TokenizerTest {
     @Test
     public void testTokenizer() {
         HashSet<String> expected = new HashSet<>(Arrays.asList("hello","hi", "java", "python", "how", "test"));
-        String str = "Hello-hi, how? java*python! test.";
+        String testString = "Hello-hi, how? java*python! test.";
         Tokenizer tokenizer = new Tokenizer();
-        assertEquals(expected, tokenizer.tokenize(str));
+        assertEquals(expected, tokenizer.tokenize(testString));
     }
 }

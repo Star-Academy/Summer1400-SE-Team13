@@ -10,13 +10,13 @@ public class InvertedIndexTest {
     private static final InvertedIndex invertedIndex = new InvertedIndex();
     private static final HashMap<String, HashSet<Integer>> testWordsMap = new HashMap<>();
 
-    private void initWordsMap() {
-        HashSet<Integer> h1 = new HashSet<>(Collections.singletonList(1));
-        HashSet<Integer> h2 = new HashSet<>(Collections.singletonList(1));
-        HashSet<Integer> h3 = new HashSet<>(Collections.singletonList(1));
-        testWordsMap.put("str1", h1);
-        testWordsMap.put("str2", h2);
-        testWordsMap.put("str3", h3);
+    private void setupWordsMap() {
+        HashSet<Integer> hashSetTest1 = new HashSet<>(Collections.singletonList(1));
+        HashSet<Integer> hashSetTest2 = new HashSet<>(Collections.singletonList(1));
+        HashSet<Integer> hashSetTest3 = new HashSet<>(Collections.singletonList(1));
+        testWordsMap.put("str1", hashSetTest1);
+        testWordsMap.put("str2", hashSetTest2);
+        testWordsMap.put("str3", hashSetTest3);
 
         HashSet<String> docWords = new HashSet<>(Arrays.asList("str1", "str2", "str3"));
         int docId = 1;
@@ -25,13 +25,13 @@ public class InvertedIndexTest {
 
     @Test
     public void testAddDocs() {
-        initWordsMap();
+        setupWordsMap();
         assertEquals(testWordsMap, invertedIndex.getWordsMap());
     }
 
     @Test
     public void testGetWordDocs() {
-        initWordsMap();
+        setupWordsMap();
         HashSet<Integer> wordDocs = new HashSet<>(Collections.singletonList(1));
         assertEquals(wordDocs, invertedIndex.getWordDocs("str1"));
     }
