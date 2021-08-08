@@ -15,7 +15,8 @@ namespace Phase04
 
         private List<Grade> GetStudentsGrades()
         {
-            return _studentsList.Join(_scoresList, std => std.StudentNumber, grade => grade.StudentNumber, (std, grade) => grade).ToList();
+            List<Grade> studentsGrades = _studentsList.Join(_scoresList, std => std.StudentNumber, grade => grade.StudentNumber, (std, grade) => grade).ToList();
+            return studentsGrades;
         }
 
         private Dictionary<Student, double> SetStudentAverage()
