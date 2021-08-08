@@ -8,30 +8,17 @@ namespace SearchTest
 {
     public class FullTextSearchTest
     {
-        private readonly IInvertedIndex _invertedIndex;
         private readonly IDocsFileReader _docsFileReader;
-        private readonly ITokenizer _tokenizer;
         private readonly IFilterApplier _filterApplier;
         private readonly IFullTextSearch _fullTextSearch;
 
         public FullTextSearchTest()
         {
-            _invertedIndex = Substitute.For<IInvertedIndex>();
+            var invertedIndex = Substitute.For<IInvertedIndex>();
+            var tokenizer = Substitute.For<ITokenizer>();
             _docsFileReader = Substitute.For<IDocsFileReader>();
-            _tokenizer = Substitute.For<ITokenizer>();
             _filterApplier = Substitute.For<IFilterApplier>();
-            _fullTextSearch = new FullTextSearch(_invertedIndex, _docsFileReader,_tokenizer, _filterApplier);
-        }
-
-        private void SetupInvertedIndex()
-        {
-            _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>(){"File1", "File2"});
-            _invertedIndex.GetWordDocs("java").Returns(new HashSet<string>() {"File1", "File3"});
-            _invertedIndex.GetWordDocs("python").Returns(new HashSet<string>() {"File2"});
-            _invertedIndex.GetWordDocs("sample").Returns(new HashSet<string>() {"File3"});
-            _invertedIndex.AddDoc(new HashSet<string>() {"hello", "java"}, "File1");
-            _invertedIndex.AddDoc(new HashSet<string>() {"hello", "python"}, "File2");
-            _invertedIndex.AddDoc(new HashSet<string>(){"sample", "java"}, "File3");
+            _fullTextSearch = new FullTextSearch(invertedIndex, _docsFileReader,tokenizer, _filterApplier);
         }
 
         private void SetupDocsFileReader()
@@ -43,14 +30,7 @@ namespace SearchTest
                 {"File3", "sample Java"}
             });
         }
-
-        private void SetupTokenizer()
-        {
-            _tokenizer.Tokenize("Hello Java.").Returns(new HashSet<string>() {"hello", "java"});
-            _tokenizer.Tokenize("Hello, python").Returns(new HashSet<string>() {"hello", "python"});
-            _tokenizer.Tokenize("sample Java").Returns(new HashSet<string>(){"sample", "java"});
-        }
-
+        
         private void SetupFilterApplier()
         {
             _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 3)).Returns(new HashSet<string>(){"File1"});
@@ -60,9 +40,7 @@ namespace SearchTest
 
         private void SetupInterfaces()
         {
-            SetupInvertedIndex();
             SetupDocsFileReader();
-            SetupTokenizer();
             SetupFilterApplier();
         }
 
