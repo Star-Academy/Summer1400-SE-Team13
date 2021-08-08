@@ -2,7 +2,7 @@
 
 namespace Phase5
 {
-    public class FullTextSearch
+    public class FullTextSearch : IFullTextSearch
     {
         private readonly IInvertedIndex _invertedIndex;
         private readonly IDocsFileReader _docsFileReader;
