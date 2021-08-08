@@ -12,7 +12,7 @@ namespace SearchTest
         private readonly IDocsFileReader _docsFileReader;
         private readonly ITokenizer _tokenizer;
         private readonly IFilterApplier _filterApplier;
-        private readonly FullTextSearch _fullTextSearch;
+        private readonly IFullTextSearch _fullTextSearch;
 
         public FullTextSearchTest()
         {
@@ -53,9 +53,9 @@ namespace SearchTest
 
         private void SetupFilterApplier()
         {
-            _filterApplier.Filter(new[] {"hello", "+java", "-sample"}).Returns(new HashSet<string>(){"File1"});
-            _filterApplier.Filter(new []{"hello"}).Returns(new HashSet<string>() {"File1", "File2"});
-            _filterApplier.Filter(new[] {"+java +python"}).Returns(new HashSet<string>() {"File1", "File2"});
+            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 3)).Returns(new HashSet<string>(){"File1"});
+            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 1)).Returns(new HashSet<string>(){"File1", "File2"});
+            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 2)).Returns(new HashSet<string>(){"File1", "File2"});
         }
 
         private void SetupInterfaces()
@@ -73,7 +73,8 @@ namespace SearchTest
         public void TestFindCommandResult_WithDifferentEntries(string testCommand, string[] expectedResult)
         {
             SetupInterfaces();
-            Assert.Equal(expectedResult, _fullTextSearch.FindCommandResult(testCommand).ToArray());
+            var set = _fullTextSearch.FindCommandResult(testCommand);
+            Assert.Equal(expectedResult, set.ToArray());
         }
     }
 }
