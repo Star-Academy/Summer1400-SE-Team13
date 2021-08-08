@@ -1,6 +1,7 @@
 package src;
 
 import java.io.*;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class DocsFileReader {
@@ -19,7 +20,7 @@ public class DocsFileReader {
                 scanner.close();
                 filesContents.put(Integer.parseInt(file.getName()), fileContent);
             }
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return filesContents;
