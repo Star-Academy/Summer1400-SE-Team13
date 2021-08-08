@@ -1,3 +1,5 @@
+package src;
+
 import java.util.*;
 
 public class FullTextSearch {
@@ -16,8 +18,8 @@ public class FullTextSearch {
         this.filterHandler = filterHandler;
     }
 
-    public void loadDocs() {
-        final String fileAddress = "Phase1/EnglishData";
+    private void loadDocs() {
+        final String fileAddress = "Phase1/test/SampleFolder";
         HashMap<Integer, String> initialDocs = docsFileReader.readContent(fileAddress);
         for (int id : initialDocs.keySet()) {
             String docString = initialDocs.get(id);
@@ -32,7 +34,7 @@ public class FullTextSearch {
         return filterHandler.filter(words);
     }
 
-    public String[] splitCommand() {
-        return command.split(" ");
+    private String[] splitCommand() {
+        return command.toLowerCase().split(" ");
     }
 }

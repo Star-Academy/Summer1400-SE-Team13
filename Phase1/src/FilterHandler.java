@@ -1,3 +1,4 @@
+package src;
 import java.util.*;
 
 public class FilterHandler {
@@ -43,8 +44,8 @@ public class FilterHandler {
 
     private void handleFilters() {
         handlePlusFilter();
-        handleNoSignFilter();
         handleMinusFilter();
+        handleNoSignFilter();
     }
 
     private void handlePlusFilter() {
