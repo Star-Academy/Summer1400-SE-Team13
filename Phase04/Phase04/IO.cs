@@ -14,17 +14,16 @@ namespace Phase04
             return fileContent;
         }
         
-        public void PrintOutput(Dictionary<Student, double> studentsList, int numberOfStudentToPrint)
+        public void PrintOutput(Dictionary<Student, double> studentsList)
         {
-            var firstThreeStudents = studentsList.Take(numberOfStudentToPrint);
-            
-            foreach(var (student, average) in firstThreeStudents)
+
+            foreach(var (student, average) in studentsList)
             {
-                Console.WriteLine(OutputString(student, average));
+                Console.WriteLine(ConstructOutputString(student, average));
             }
         }
 
-        private string OutputString(Student student, double GPA)
+        private string ConstructOutputString(Student student, double GPA)
         {
             return student.FirstName + " " + student.LastName + "       GPA: " + GPA + '\n'; 
         }
