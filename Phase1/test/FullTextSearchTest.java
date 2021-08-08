@@ -27,9 +27,41 @@ public class FullTextSearchTest {
     }
 
     @Test
-    public void testFullTextSearch() {
+    public void testFullTextSearch_simple() {
         HashSet<Integer> expect = new HashSet<>(Arrays.asList(1, 2));
         FullTextSearch fullTextSearch = new FullTextSearch("hello", invertedIndex, tokenizer, docsFileReader,
+                filterHandler);
+        assertEquals(expect, fullTextSearch.run());
+    }
+
+    @Test
+    public void testFullTextSearch_complicated() {
+        HashSet<Integer> expect = new HashSet<>();
+        FullTextSearch fullTextSearch = new FullTextSearch("+hello +bye +raha -melika java", invertedIndex, tokenizer, docsFileReader,
+                filterHandler);
+        assertEquals(expect, fullTextSearch.run());
+    }
+
+    @Test
+    public void testFullTextSearch_minusOnly() {
+        HashSet<Integer> expect = new HashSet<>();
+        FullTextSearch fullTextSearch = new FullTextSearch("-melika -java", invertedIndex, tokenizer, docsFileReader,
+                filterHandler);
+        assertEquals(expect, fullTextSearch.run());
+    }
+
+    @Test
+    public void testFullTextSearch_noSignOnly() {
+        HashSet<Integer> expect = new HashSet<>(Arrays.asList(3));
+        FullTextSearch fullTextSearch = new FullTextSearch("melika python", invertedIndex, tokenizer, docsFileReader,
+                filterHandler);
+        assertEquals(expect, fullTextSearch.run());
+    }
+
+    @Test
+    public void testFullTextSearch_plusAndNoSignOnly() {
+        HashSet<Integer> expect = new HashSet<>(Arrays.asList(2));
+        FullTextSearch fullTextSearch = new FullTextSearch("+hello you", invertedIndex, tokenizer, docsFileReader,
                 filterHandler);
         assertEquals(expect, fullTextSearch.run());
     }

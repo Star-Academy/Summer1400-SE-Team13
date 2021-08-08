@@ -16,6 +16,6 @@ public class DocsFileReaderTest {
         expectedValue.put(docIDExpected, docContentExpected);
         final String fileAddress = "Phase1/test/SampleFolder";
         HashMap<Integer, String> actualValue = docsFileReader.readContent(fileAddress);
-        assertEquals(expectedValue, actualValue);
+        assertEquals(expectedValue.get(1), actualValue.get(1));
     }
 }
