@@ -19,9 +19,10 @@ namespace Phase5
         }
         static void Main(string[] args)
         {
+            const string filePath = "EnglishData";
             var command = Console.ReadLine();
             var invertedIndex = new InvertedIndex();
-            var docsFileReader = new DocsFileReader("EnglishData");
+            var docsFileReader = new DocsFileReader(filePath);
             var tokenizer = new Tokenizer();
             var filterApplier = new FilterApplier(invertedIndex);
             var fullTextSearch = new FullTextSearch(invertedIndex, docsFileReader, tokenizer, filterApplier);
