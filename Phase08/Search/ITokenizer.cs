@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace Phase5
+namespace Search
 {
     public interface ITokenizer
     {

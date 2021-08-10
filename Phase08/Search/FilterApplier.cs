@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Phase5
+namespace Search
 {
     public class FilterApplier : IFilterApplier
     {
@@ -10,6 +10,7 @@ namespace Phase5
         {
             _invertedIndex = invertedIndex;
         }
+
         public HashSet<string> Filter(HashSet<string> plusWords, HashSet<string> minusWords, HashSet<string> noSignWords)
         {
             var plusCommandWordsDocs = GetSignDocs(plusWords);

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Phase5
+namespace Search
 {
     public class DocsFileReader : IDocsFileReader
     {

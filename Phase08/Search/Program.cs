@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Model;
 
-namespace Phase5
+namespace Search
 {
     class Program
     {
@@ -21,7 +22,8 @@ namespace Phase5
         {
             const string filePath = "EnglishData";
             var command = Console.ReadLine();
-            var invertedIndex = new InvertedIndex();
+            using var context = new SearchContext();
+            var invertedIndex = new InvertedIndex(context);
             var docsFileReader = new DocsFileReader(filePath);
             var tokenizer = new Tokenizer();
             var queryProcessor = new QueryProcessor();
