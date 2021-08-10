@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Search
@@ -10,7 +10,6 @@ namespace Search
         {
             _invertedIndex = invertedIndex;
         }
-
         public HashSet<string> Filter(HashSet<string> plusWords, HashSet<string> minusWords, HashSet<string> noSignWords)
         {
             var plusCommandWordsDocs = GetSignDocs(plusWords);

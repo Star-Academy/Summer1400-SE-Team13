@@ -20,12 +20,12 @@ namespace Search
         }
 
         public HashSet<string> FindCommandResult(string command)
-         {
+        {
             LoadDocs();
             _queryProcessor.SplitCommandWordsBySign(command);
             var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);
             return result;
-         }
+        }
 
         private void LoadDocs()
         {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model;
+using Search.Model;
 
 namespace Search
 {
@@ -20,7 +20,7 @@ namespace Search
         }
         static void Main(string[] args)
         {
-            const string filePath = "EnglishData";
+            const string filePath = @"EnglishData";
             var command = Console.ReadLine();
             using var context = new SearchContext();
             var invertedIndex = new InvertedIndex(context);
