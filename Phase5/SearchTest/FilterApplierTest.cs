@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
@@ -14,7 +15,7 @@ namespace SearchTest
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
         }
-        private void SetupInterfaces()
+        private void SetupInvertedIndex()
         {
             _invertedIndex.GetWordDocs("microsoft").Returns(new HashSet<string>{"File1.txt"});
             _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>{"File2.txt", "File3.txt"});
@@ -22,14 +23,16 @@ namespace SearchTest
             _invertedIndex.GetWordDocs("xunit").Returns(new HashSet<string>{"File3.txt"});
         }
         [Theory]
-        [InlineData(new [] {"+microsoft", "-xunit", "hello"}, new string[] {})]
-        [InlineData(new [] {"-xunit", "-hello"}, new string[] {})]
-        [InlineData(new [] {"+microsoft", "xunit", "+hello"}, new [] {"File3.txt"})]
-        public void FilterApplierTestMethod(string[] testCommand, string[] expected)
+        [InlineData(new [] {"microsoft"},new [] {"xunit"},new [] {"hello"}, new string[] {})]
+        [InlineData(new string[]{}, new [] {"xunit", "hello"}, new string[] {}, new string[] {})]
+        [InlineData(new [] {"microsoft", "hello"}, new string[] {}, new [] {"xunit"}, new [] {"File3.txt"})]
+        public void FilterApplierTestMethod(string[] plusWords, string[] minusWords, string[] noSignWords, string[] expected)
         {
-            SetupInterfaces();
+            SetupInvertedIndex();
             var filterApplier = new FilterApplier(_invertedIndex);
-            Assert.Equal(expected.ToHashSet(), filterApplier.Filter(testCommand));
+            var actualValue =
+                filterApplier.Filter(plusWords.ToHashSet(), minusWords.ToHashSet(), noSignWords.ToHashSet());
+            Assert.Equal(expected.ToHashSet(), actualValue);
         }
     }
 }

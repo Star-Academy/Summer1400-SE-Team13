@@ -24,8 +24,9 @@ namespace Phase5
             var invertedIndex = new InvertedIndex();
             var docsFileReader = new DocsFileReader(filePath);
             var tokenizer = new Tokenizer();
+            var queryProcessor = new QueryProcessor();
             var filterApplier = new FilterApplier(invertedIndex);
-            var fullTextSearch = new FullTextSearch(invertedIndex, docsFileReader, tokenizer, filterApplier);
+            var fullTextSearch = new FullTextSearch(invertedIndex, docsFileReader, tokenizer, queryProcessor, filterApplier);
             var commandResult = fullTextSearch.FindCommandResult(command);
             PrintCommandResult(commandResult);
         }

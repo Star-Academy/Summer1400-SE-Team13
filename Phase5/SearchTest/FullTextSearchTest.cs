@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NSubstitute;
 using Phase5;
 using Xunit;
@@ -10,17 +9,63 @@ namespace SearchTest
     {
         private readonly IDocsFileReader _docsFileReader;
         private readonly IFilterApplier _filterApplier;
+        private readonly IQueryProcessor _queryProcessor;
         private readonly IFullTextSearch _fullTextSearch;
 
         public FullTextSearchTest()
         {
             var invertedIndex = Substitute.For<IInvertedIndex>();
             var tokenizer = Substitute.For<ITokenizer>();
+            _queryProcessor = Substitute.For<IQueryProcessor>();
             _docsFileReader = Substitute.For<IDocsFileReader>();
             _filterApplier = Substitute.For<IFilterApplier>();
-            _fullTextSearch = new FullTextSearch(invertedIndex, _docsFileReader,tokenizer, _filterApplier);
+            _fullTextSearch = new FullTextSearch(invertedIndex, _docsFileReader,tokenizer, _queryProcessor, _filterApplier);
         }
 
+        [Fact]
+        public void TestSearchQueryWithOneNoSignWord()
+        {
+            SetupInterfaces();
+            var query = "hello";
+            _queryProcessor.MinusCommandWords.Returns(new HashSet<string>());
+            _queryProcessor.PlusCommandWords.Returns(new HashSet<string>());
+            _queryProcessor.NoSignCommandWords.Returns(new HashSet<string>(){"hello"});
+            var expectedResult = new HashSet<string>() {"File1", "File2"};
+            var actualResult = _fullTextSearch.FindCommandResult(query);
+            Assert.Equal(expectedResult, actualResult);
+        }
+        
+        [Fact]
+        public void TestSearchQueryWithNoSignPlusMinusWords()
+        {
+            SetupInterfaces();
+            var query = "hello +java -sample";
+            _queryProcessor.MinusCommandWords.Returns(new HashSet<string>(){"sample"});
+            _queryProcessor.PlusCommandWords.Returns(new HashSet<string>(){"java"});
+            _queryProcessor.NoSignCommandWords.Returns(new HashSet<string>(){"hello"});
+            var expectedResult = new HashSet<string>() {"File1"};
+            var actualResult = _fullTextSearch.FindCommandResult(query);
+            Assert.Equal(expectedResult, actualResult);
+        }
+        
+        [Fact]
+        public void TestSearchQueryWithNoSignAndMinusWords()
+        {
+            SetupInterfaces();
+            var query = "-hello java";
+            _queryProcessor.MinusCommandWords.Returns(new HashSet<string>(){"hello"});
+            _queryProcessor.PlusCommandWords.Returns(new HashSet<string>());
+            _queryProcessor.NoSignCommandWords.Returns(new HashSet<string>(){"java"});
+            var expectedResult = new HashSet<string>() {"File3"};
+            var actualResult = _fullTextSearch.FindCommandResult(query);
+            Assert.Equal(expectedResult, actualResult);
+        }
+        
+        private void SetupInterfaces()
+        {
+            SetupDocsFileReader();
+            SetupFilterApplier();
+        }
         private void SetupDocsFileReader()
         {
             _docsFileReader.ReadContent().Returns(new Dictionary<string, string>
@@ -30,29 +75,11 @@ namespace SearchTest
                 {"File3", "sample Java"}
             });
         }
-        
         private void SetupFilterApplier()
         {
-            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 3)).Returns(new HashSet<string>(){"File1"});
-            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 1)).Returns(new HashSet<string>(){"File1", "File2"});
-            _filterApplier.Filter(Arg.Is<string[]>(x => x.Length == 2)).Returns(new HashSet<string>(){"File1", "File2"});
-        }
-
-        private void SetupInterfaces()
-        {
-            SetupDocsFileReader();
-            SetupFilterApplier();
-        }
-
-        [Theory]
-        [InlineData("hello +java -sample", new [] {"File1"})]
-        [InlineData("hello", new [] {"File1", "File2"})]
-        [InlineData("+java +python", new [] {"File1", "File2"})]
-        public void TestFindCommandResult_WithDifferentEntries(string testCommand, string[] expectedResult)
-        {
-            SetupInterfaces();
-            var actualResult = _fullTextSearch.FindCommandResult(testCommand);
-            Assert.Equal(expectedResult, actualResult.ToArray());
+            _filterApplier.Filter(Arg.Is<HashSet<string>>(x => x.Count == 1),Arg.Is<HashSet<string>>(x => x.Count == 1),Arg.Is<HashSet<string>>(x => x.Count == 1)).Returns(new HashSet<string>(){"File1"});
+            _filterApplier.Filter(Arg.Is<HashSet<string>>(x => x.Count == 0),Arg.Is<HashSet<string>>(x => x.Count == 0),Arg.Is<HashSet<string>>(x => x.Count == 1)).Returns(new HashSet<string>(){"File1", "File2"});
+            _filterApplier.Filter(Arg.Is<HashSet<string>>(x => x.Count == 0),Arg.Is<HashSet<string>>(x => x.Count == 1),Arg.Is<HashSet<string>>(x => x.Count == 1)).Returns(new HashSet<string>(){"File3"});
         }
     }
 }
