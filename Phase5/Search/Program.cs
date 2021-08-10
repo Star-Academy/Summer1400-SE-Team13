@@ -27,8 +27,8 @@ namespace Phase5
             var queryProcessor = new QueryProcessor();
             var filterApplier = new FilterApplier(invertedIndex);
             var fullTextSearch = new FullTextSearch(invertedIndex, docsFileReader, tokenizer, queryProcessor, filterApplier);
-            var commandResult = fullTextSearch.FindCommandResult(command);
-            PrintCommandResult(commandResult);
+            var searchResult = fullTextSearch.FindCommandResult(command);
+            PrintCommandResult(searchResult);
         }
     }
 }
