@@ -1,6 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Model
 {
-    class DocToWord
+    public class DocToWord
     {
         [Key]
         public int DocId {get; set;}
