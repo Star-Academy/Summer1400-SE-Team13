@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 
@@ -8,16 +9,9 @@ namespace Phase5
     {
         public HashSet<string> Tokenize(string doc)
         {
-            var ans = new HashSet<string>();
-            var regex = new Regex("[a-zA-Z]+");
-            var matches = regex.Matches(doc);
-            foreach (Match match in matches)
-            {
-                var word = match.Value;
-                if (word.Length > 1)
-                    ans.Add(word.ToLower());
-            }
-            return ans;
+            doc = doc.ToLower();
+            var wordsDoc = Regex.Split(doc,"[\\W]+").Where(x => x.Length > 1).ToHashSet();
+            return wordsDoc;
         }
     }
 }

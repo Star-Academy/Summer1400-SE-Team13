@@ -13,7 +13,7 @@ namespace SearchTest
         }
 
         [Fact]
-        public void TestTokenizeMethod()
+        public void TestTokenizeMethod_ShouldExtractWords()
         {
             const string testString = "Hello-hi, how? java*python! test.";
             var expected = new HashSet<string>(){"hello", "hi", "how","java","python","test"};
