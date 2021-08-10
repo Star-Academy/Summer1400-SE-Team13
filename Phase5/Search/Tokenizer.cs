@@ -9,8 +9,7 @@ namespace Phase5
     {
         public HashSet<string> Tokenize(string doc)
         {
-            doc = doc.ToLower();
-            var wordsDoc = Regex.Split(doc,"[\\W]+").Where(x => x.Length > 1).ToHashSet();
+            var wordsDoc = Regex.Split(doc.ToLower(),"[\\W]+").Where(x => x.Length > 1).ToHashSet();
             return wordsDoc;
         }
     }
