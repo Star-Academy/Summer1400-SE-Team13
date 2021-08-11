@@ -4,7 +4,7 @@ namespace Phase5
 {
     public interface IInvertedIndex
     { 
-        void AddDoc(HashSet<string> docWords, string docId); 
+        void Setup(Dictionary<string, HashSet<string>> wordsMap); 
         HashSet<string> GetWordDocs(string word);
     }
 }

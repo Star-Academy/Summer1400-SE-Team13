@@ -34,12 +34,12 @@ namespace Phase5
         private void LoadDocs()
         {
             var docsMap = _docsFileReader.ReadContent();
-            Dictionary<string, HashSet<string>> invertedIndexContent = new Dictionary<string, HashSet<string>>();
+            Dictionary<string, HashSet<string>> invertedIndexMap = new Dictionary<string, HashSet<string>>();
             foreach (var (docId, docContent) in docsMap)
             {
                 var docWords = _tokenizer.Tokenize(docContent);
-                invertedIndexContent.Add(docId, docWords);
-                _invertedIndex.AddDoc(invertedIndexContent);
+                invertedIndexMap.Add(docId, docWords);
+                _invertedIndex.Setup(invertedIndexMap);
             }
         }
     }
