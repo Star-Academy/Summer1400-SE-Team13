@@ -11,7 +11,7 @@ namespace Phase5
             //_wordsMap = new Dictionary<string, HashSet<string>>();
         }
 
-        public void Setup(Dictionary<string, HashSet<string>> wordsMap)
+        public void SetupInvertedIndex(Dictionary<string, HashSet<string>> wordsMap)
         {
             _wordsMap = wordsMap;
         }

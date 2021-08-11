@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Phase5;
 using Xunit;
 
@@ -15,24 +16,22 @@ namespace SearchTest
 
         private void SetupInvertedIndex()
         {
-            _invertedIndex.AddDoc(new HashSet<string>(){"word1", "word2"}, "doc1");
-            _invertedIndex.AddDoc(new HashSet<string>(){"word1"}, "doc2");
+            var wordsMap = new Dictionary<string, HashSet<string>>()
+            {
+                {"word1", new HashSet<string>(){"doc1", "doc2"}},
+                {"word2", new HashSet<string>(){"doc1"}}
+            };
+            _invertedIndex.SetupInvertedIndex(wordsMap);
         }
 
-        [Fact]
-        public void TestGetExistingWordDocuments()
+        [Theory]
+        [InlineData("word1", new [] {"doc1", "doc2"})]
+        [InlineData("word3", new string[]{})]
+        public void TestGetWordDocs_ForExistingAndNotExistingWord(string word, string[] expectedDocs)
         {
             SetupInvertedIndex();
-            var expectedDocs = new HashSet<string>() {"doc1", "doc2"};
-            Assert.Equal(expectedDocs, _invertedIndex.GetWordDocs("word1"));
+            Assert.Equal(expectedDocs.ToHashSet(), _invertedIndex.GetWordDocs(word));
             
-        }
-
-        [Fact]
-        public void TestGetNotExistingWordDocuments()
-        {
-            SetupInvertedIndex();
-            Assert.Empty(_invertedIndex.GetWordDocs("word"));
         }
     }
 }
