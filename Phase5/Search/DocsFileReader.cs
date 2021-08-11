@@ -15,12 +15,12 @@ namespace Phase5
     
         public Dictionary<string, string> ReadContent()
         {
-            var filesAddress = GetAllFiles();
+            var filesAddress = GetAllFilesAddresses();
 
             return filesAddress.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText);
         }
 
-        private IEnumerable<string> GetAllFiles()
+        private IEnumerable<string> GetAllFilesAddresses()
         {
             var filesAddress = new List<string>();
             if (File.Exists(_filePath))
