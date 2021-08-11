@@ -26,7 +26,7 @@ namespace SearchTest
         public void TestSearchQueryWithOneNoSignWord()
         {
             SetupInterfaces();
-            var query = "hello";
+            const string query = "hello";
             _queryProcessor.MinusCommandWords.Returns(new HashSet<string>());
             _queryProcessor.PlusCommandWords.Returns(new HashSet<string>());
             _queryProcessor.NoSignCommandWords.Returns(new HashSet<string>(){"hello"});
