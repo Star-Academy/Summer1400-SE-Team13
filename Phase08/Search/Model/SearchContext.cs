@@ -10,9 +10,9 @@ namespace Search.Model
         public DbSet<DocToWord> RelationTable { set; get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             optionsBuilder.UseSqlServer(@"Server=.;Database=FullTextSearch;Trusted_Connection=True;");
-        }
+        } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

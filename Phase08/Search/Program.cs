@@ -10,7 +10,7 @@ namespace Search
         {
             if (commandResult.Count == 0)
             {
-                Console.WriteLine("No do found!");
+                Console.WriteLine("No docs found!");
             }
             else
             {
