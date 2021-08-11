@@ -18,24 +18,26 @@ namespace Search
 
         public void AddDoc(HashSet<string> docWords, string docId)
         {
-            _searchContext.Docs.Add(new Doc(){
+            var currentDoc = new Doc()
+            {
                 Name = docId
-            });
+            };
+            _searchContext.Docs.Add(currentDoc);
+            _searchContext.SaveChanges();
 
             foreach (var wordStr in docWords)
             {
                 if (_searchContext.Words.Include(w => w.Content == wordStr) == null)
-                    _searchContext.Words.Add(new Word(){
+                {
+                    _searchContext.Words.Add(new Word()
+                    {
                         Content = wordStr
                     });
-                var doc = _searchContext.Docs.Single(d => d.Name == docId);
-                var word = _searchContext.Words.Single(w => w.Content == wordStr);
-                var docToWord = new DocToWord()
-                {
-                    Doc = doc,
-                    Word = word
-                };
-                _searchContext.RelationTable.Add(docToWord);
+                    _searchContext.SaveChanges();
+                }
+                _searchContext.Words.Find(wordStr).Docs.Add(currentDoc);
+                // var currentWord = _searchContext.Words.Select(w => w.Content == wordStr);
+                // currentDoc.Words.Add(currentWord);
             }
             _searchContext.SaveChanges();
         }
