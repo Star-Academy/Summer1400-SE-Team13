@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
@@ -15,13 +14,7 @@ namespace SearchTest
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
         }
-        private void SetupInvertedIndex()
-        {
-            _invertedIndex.GetWordDocs("microsoft").Returns(new HashSet<string>{"File1.txt"});
-            _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>{"File2.txt", "File3.txt"});
-            _invertedIndex.GetWordDocs("tool").Returns(new HashSet<string>{"File3.txt"});
-            _invertedIndex.GetWordDocs("xunit").Returns(new HashSet<string>{"File3.txt"});
-        }
+      
         [Theory]
         [InlineData(new [] {"microsoft"},new [] {"xunit"},new [] {"hello"}, new string[] {})]
         [InlineData(new string[]{}, new [] {"xunit", "hello"}, new string[] {}, new string[] {})]
@@ -33,6 +26,13 @@ namespace SearchTest
             var actualValue =
                 filterApplier.Filter(plusWords.ToHashSet(), minusWords.ToHashSet(), noSignWords.ToHashSet());
             Assert.Equal(expected.ToHashSet(), actualValue);
+        }
+        private void SetupInvertedIndex()
+        {
+            _invertedIndex.GetWordDocs("microsoft").Returns(new HashSet<string>{"File1.txt"});
+            _invertedIndex.GetWordDocs("hello").Returns(new HashSet<string>{"File2.txt", "File3.txt"});
+            _invertedIndex.GetWordDocs("tool").Returns(new HashSet<string>{"File3.txt"});
+            _invertedIndex.GetWordDocs("xunit").Returns(new HashSet<string>{"File3.txt"});
         }
     }
 }

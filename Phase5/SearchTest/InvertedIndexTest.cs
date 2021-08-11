@@ -14,16 +14,6 @@ namespace SearchTest
             _invertedIndex = new InvertedIndex();
         }
 
-        private void SetupInvertedIndex()
-        {
-            var wordsMap = new Dictionary<string, HashSet<string>>()
-            {
-                {"word1", new HashSet<string>(){"doc1", "doc2"}},
-                {"word2", new HashSet<string>(){"doc1"}}
-            };
-            _invertedIndex.SetupInvertedIndex(wordsMap);
-        }
-
         [Theory]
         [InlineData("word1", new [] {"doc1", "doc2"})]
         [InlineData("word3", new string[]{})]
@@ -32,6 +22,15 @@ namespace SearchTest
             SetupInvertedIndex();
             Assert.Equal(expectedDocs.ToHashSet(), _invertedIndex.GetWordDocs(word));
             
+        }
+        private void SetupInvertedIndex()
+        {
+            var wordsMap = new Dictionary<string, HashSet<string>>()
+            {
+                {"word1", new HashSet<string>(){"doc1", "doc2"}},
+                {"word2", new HashSet<string>(){"doc1"}}
+            };
+            _invertedIndex.SetupInvertedIndex(wordsMap);
         }
     }
 }
