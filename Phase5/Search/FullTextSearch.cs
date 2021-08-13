@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Phase5
 {
@@ -25,22 +26,11 @@ namespace Phase5
 
         public HashSet<string> FindCommandResult(string command)
         {
-            LoadDocs();
+            var docsMap = _docsFileReader.ReadContent();
+            _invertedIndex.BuildInvertedIndex(docsMap, _tokenizer);
             _queryProcessor.SplitCommandWordsBySign(command);
             var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);
             return result;
-        }
-
-        private void LoadDocs()
-        {
-            var docsMap = _docsFileReader.ReadContent();
-            var invertedIndexMap = new Dictionary<string, HashSet<string>>();
-            foreach (var (docId, docContent) in docsMap)
-            {
-                var docWords = _tokenizer.Tokenize(docContent);
-                invertedIndexMap.Add(docId, docWords);
-                _invertedIndex.SetupInvertedIndex(invertedIndexMap);
-            }
         }
     }
 }

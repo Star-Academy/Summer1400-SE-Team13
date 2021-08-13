@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NSubstitute;
 using Phase5;
 using Xunit;
 
@@ -7,11 +8,13 @@ namespace SearchTest
 {
     public class InvertedIndexTest
     {
-        private readonly InvertedIndex _invertedIndex;
+        private readonly IInvertedIndex _invertedIndex;
+        private readonly ITokenizer _tokenizer;
 
         public InvertedIndexTest()
         {
             _invertedIndex = new InvertedIndex();
+            _tokenizer = Substitute.For<ITokenizer>();
         }
 
         [Theory]
@@ -19,18 +22,30 @@ namespace SearchTest
         [InlineData("word3", new string[]{})]
         public void TestGetWordDocs_ForExistingAndNotExistingWord(string word, string[] expectedDocs)
         {
-            SetupInvertedIndex();
+            SetupMockedObjects();
             Assert.Equal(expectedDocs.ToHashSet(), _invertedIndex.GetWordDocs(word));
             
         }
-        private void SetupInvertedIndex()
+
+        private void SetupMockedObjects()
         {
-            var wordsMap = new Dictionary<string, HashSet<string>>()
+            SetupMockedTokenizer();
+            SetupMockedInvertedIndex();
+        }
+
+        private void SetupMockedTokenizer()
+        {
+            _tokenizer.Tokenize("word1 word2").Returns(new HashSet<string>() {"word1", "word2"});
+            _tokenizer.Tokenize("word1").Returns(new HashSet<string>() {"word1"});
+        }
+        private void SetupMockedInvertedIndex()
+        {
+            var docsMap = new Dictionary<string, string>()
             {
-                {"word1", new HashSet<string>(){"doc1", "doc2"}},
-                {"word2", new HashSet<string>(){"doc1"}}
+                {"doc1", "word1 word2"},
+                {"doc2", "word1"}
             };
-            _invertedIndex.SetupInvertedIndex(wordsMap);
+            _invertedIndex.BuildInvertedIndex(docsMap, _tokenizer);
         }
     }
 }
