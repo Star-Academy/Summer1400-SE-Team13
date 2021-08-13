@@ -6,28 +6,21 @@ namespace Phase5
 {
     public class DocsFileReader : IDocsFileReader
     {
-        private readonly string _filePath;
-
-        public DocsFileReader(string filePath)
+        public Dictionary<string, string> ReadContent(string path)
         {
-            _filePath = filePath;
-        }
-    
-        public Dictionary<string, string> ReadContent()
-        {
-            var filesAddress = GetAllFilesAddresses();
+            var filesAddress = GetAllFilesAddresses(path);
 
             return filesAddress.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText);
         }
 
-        private IEnumerable<string> GetAllFilesAddresses()
+        private IEnumerable<string> GetAllFilesAddresses(string path)
         {
             var filesAddress = new List<string>();
-            if (File.Exists(_filePath))
-                filesAddress.Add(_filePath);
+            if (File.Exists(path))
+                filesAddress.Add(path);
 
-            else if (Directory.Exists(_filePath))
-                filesAddress.AddRange(Directory.GetFiles(_filePath).ToList());
+            else if (Directory.Exists(path))
+                filesAddress.AddRange(Directory.GetFiles(path).ToList());
             else
                 throw new IOException("File not found!");
             

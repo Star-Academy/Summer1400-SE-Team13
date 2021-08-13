@@ -26,7 +26,8 @@ namespace Phase5
 
         public HashSet<string> FindCommandResult(string command)
         {
-            var docsMap = _docsFileReader.ReadContent();
+            const string filePath = "EnglishData";
+            var docsMap = _docsFileReader.ReadContent(filePath);
             _invertedIndex.BuildInvertedIndex(docsMap, _tokenizer);
             _queryProcessor.SplitCommandWordsBySign(command);
             var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);
