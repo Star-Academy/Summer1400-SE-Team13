@@ -1,36 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Search.Model;
+﻿using Search.Model;
 
 namespace Search
 {
     class Program
     {
-        static void PrintCommandResult(HashSet<string> commandResult)
-        {
-            if (commandResult.Count == 0)
-            {
-                Console.WriteLine("No docs found!");
-            }
-            else
-            {
-                Console.WriteLine("Count: " + commandResult.Count);
-                Console.WriteLine("Docs: " + string.Join(",", commandResult));
-            }
-        }
         static void Main(string[] args)
         {
-            const string filePath = @"EnglishData";
-            var command = Console.ReadLine();
-            using var context = new SearchContext();
+            var ioHandler = new IOHandler();
+            var command = ioHandler.GetUserInput();
+            var context = new SearchContext();
             var invertedIndex = new InvertedIndex(context);
-            var docsFileReader = new DocsFileReader(filePath);
+            var docsFileReader = new DocsFileReader();
             var tokenizer = new Tokenizer();
             var queryProcessor = new QueryProcessor();
             var filterApplier = new FilterApplier(invertedIndex);
             var fullTextSearch = new FullTextSearch(invertedIndex, docsFileReader, tokenizer, queryProcessor, filterApplier);
             var searchResult = fullTextSearch.FindCommandResult(command);
-            PrintCommandResult(searchResult);
+            ioHandler.PrintCommandResult(searchResult);
         }
     }
 }

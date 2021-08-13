@@ -22,30 +22,15 @@ namespace Search
         
         private HashSet<string> GetNoSignDocs(HashSet<string> noSignWords)
         {
-            var wordsDocs = new HashSet<string>();
-            foreach (var docs in noSignWords.Select(word => _invertedIndex.GetWordDocs(word)))
-            {
-                if (!wordsDocs.Any())
-                {
-                    wordsDocs.UnionWith(docs);
-                }
-                else
-                {
-                    wordsDocs.IntersectWith(docs);
-                }
-            }
-            return wordsDocs;
+            return noSignWords.Any()
+                ? noSignWords.Select(x => _invertedIndex.GetWordDocs(x))
+                    .Aggregate((a, b) => a.Intersect(b).ToHashSet())
+                : new HashSet<string>();
         }
 
         private HashSet<string> GetSignDocs(HashSet<string> signWords)
         {
-            var wordsDocs = new HashSet<string>();
-            foreach (var docs in signWords.Select(word => _invertedIndex.GetWordDocs(word)))
-            {
-                wordsDocs.UnionWith(docs);
-            }
-
-            return wordsDocs;
+            return signWords.SelectMany(x => _invertedIndex.GetWordDocs(x)).ToHashSet();
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Search.Model;
 
 namespace Search
 {
     public interface IDocsFileReader
     {
-        Dictionary<string, string> ReadContent();
+        HashSet<Doc> ReadContent(string path);
     }
 }

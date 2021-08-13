@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Search.Model;
 
 namespace Search
 {
     public interface IInvertedIndex
-    { 
-        void AddDoc(HashSet<string> docWords, string docId); 
+    {
+        public void BuildInvertedIndex(HashSet<Doc> docs, ITokenizer tokenizer);
         HashSet<string> GetWordDocs(string word);
     }
 }

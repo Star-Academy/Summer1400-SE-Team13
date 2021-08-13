@@ -10,7 +10,11 @@ namespace Search
         private readonly IQueryProcessor _queryProcessor;
         private readonly IFilterApplier _filterApplier;
 
-        public FullTextSearch(IInvertedIndex invertedIndex, IDocsFileReader docsFileReader,ITokenizer tokenizer,IQueryProcessor queryProcessor, IFilterApplier filterApplier)
+        public FullTextSearch(IInvertedIndex invertedIndex, 
+            IDocsFileReader docsFileReader,
+            ITokenizer tokenizer, 
+            IQueryProcessor queryProcessor, 
+            IFilterApplier filterApplier)
         {
             _invertedIndex = invertedIndex;
             _docsFileReader = docsFileReader;
@@ -21,20 +25,12 @@ namespace Search
 
         public HashSet<string> FindCommandResult(string command)
         {
-            LoadDocs();
+            const string filePath = "EnglishData";
+            var docs = _docsFileReader.ReadContent(filePath);
+            _invertedIndex.BuildInvertedIndex(docs, _tokenizer);
             _queryProcessor.SplitCommandWordsBySign(command);
             var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);
             return result;
-        }
-
-        private void LoadDocs()
-        {
-            var docsMap = _docsFileReader.ReadContent();
-            foreach (var (docId, docContent) in docsMap)
-            {
-                var docWords = _tokenizer.Tokenize(docContent);
-                _invertedIndex.AddDoc(docWords, docId);
-            }
         }
     }
 }

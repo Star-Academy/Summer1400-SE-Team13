@@ -7,39 +7,39 @@ namespace Search
 {
     public class InvertedIndex : IInvertedIndex
     {
-        private readonly Dictionary<string, HashSet<string>> _wordsMap;
         private readonly SearchContext _searchContext;
 
         public InvertedIndex(SearchContext searchContext)
         {
-            _wordsMap = new Dictionary<string, HashSet<string>>();
             _searchContext = searchContext;
         }
 
-        public void AddDoc(HashSet<string> docWords, string docId)
+        public void BuildInvertedIndex(HashSet<Doc> docsSet, ITokenizer tokenizer)
         {
-            var currentDoc = new Doc()
+            _searchContext.Database.EnsureDeleted();
+            _searchContext.Database.EnsureCreated();
+           
+            foreach (var doc in docsSet)
             {
-                Name = docId
-            };
-            _searchContext.Docs.Add(currentDoc);
-            _searchContext.SaveChanges();
-
-            foreach (var wordStr in docWords)
-            {
-                if (_searchContext.Words.Include(w => w.Content == wordStr) == null)
+                _searchContext.Docs.Add(doc);
+                var docWords = tokenizer.Tokenize(doc.Content);
+                foreach (var wordIter in docWords)
                 {
-                    _searchContext.Words.Add(new Word()
+                    if (!_searchContext.Words.Any(w => w.Content == wordIter))
                     {
-                        Content = wordStr
-                    });
+                        _searchContext.Words.Add(new Word()
+                        {
+                            Content = wordIter,
+                            Docs = new List<Doc>()
+                        });
+                    }
+
+                    _searchContext.SaveChanges();
+                    var word = _searchContext.Words.Find(wordIter);
+                    word.Docs.Add(doc);
                     _searchContext.SaveChanges();
                 }
-                _searchContext.Words.Find(wordStr).Docs.Add(currentDoc);
-                // var currentWord = _searchContext.Words.Select(w => w.Content == wordStr);
-                // currentDoc.Words.Add(currentWord);
             }
-            _searchContext.SaveChanges();
         }
         
         public HashSet<string> GetWordDocs(string word)

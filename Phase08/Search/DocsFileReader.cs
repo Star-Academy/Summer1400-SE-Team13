@@ -1,33 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Search.Model;
 
 namespace Search
 {
     public class DocsFileReader : IDocsFileReader
     {
-        private readonly string _filePath;
-
-        public DocsFileReader(string filePath)
+        public HashSet<Doc> ReadContent(string path)
         {
-            _filePath = filePath;
-        }
-    
-        public Dictionary<string, string> ReadContent()
-        {
-            var filesAddress = GetAllFiles();
+            var filesAddress = GetAllFilesAddresses(path);
+            var docs = new HashSet<Doc>();
+            foreach (var address in filesAddress)
+            {
+                docs.Add(new Doc()
+                {
+                    Name = Path.GetFileNameWithoutExtension(address),
+                    Content = File.ReadAllText(address)
+                });
+            }
 
-            return filesAddress.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText);
+            return docs;
         }
 
-        private IEnumerable<string> GetAllFiles()
+        private IEnumerable<string> GetAllFilesAddresses(string path)
         {
             var filesAddress = new List<string>();
-            if (File.Exists(_filePath))
-                filesAddress.Add(_filePath);
+            if (File.Exists(path))
+                filesAddress.Add(path);
 
-            else if (Directory.Exists(_filePath))
-                filesAddress.AddRange(Directory.GetFiles(_filePath).ToList());
+            else if (Directory.Exists(path))
+                filesAddress.AddRange(Directory.GetFiles(path).ToList());
             else
                 throw new IOException("File not found!");
             
