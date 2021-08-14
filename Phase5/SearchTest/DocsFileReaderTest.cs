@@ -6,12 +6,15 @@ namespace SearchTest
 {
     public class DocsFileReaderTest
     {
-        private DocsFileReader _docsFileReader;
+        private readonly IDocsFileReader _docsFileReader;
+        public DocsFileReaderTest()
+        {
+            _docsFileReader = new DocsFileReader();
+        }
         
         [Fact]
         public void TestReadContentFromSingleFile()
         {
-            _docsFileReader = new DocsFileReader();
             var expected = new Dictionary<string, string>
             {
                 {"File1", "Microsoft have just announced collaborative coding via Live Share."}
@@ -22,7 +25,6 @@ namespace SearchTest
         [Fact]
         public void TestReadContentFromFolder()
         {
-            _docsFileReader = new DocsFileReader();
             var expected = new Dictionary<string, string>
             {
                 {"File1", "Microsoft have just announced collaborative coding via Live Share."},
@@ -35,7 +37,6 @@ namespace SearchTest
         [Fact]
         public void TestReadContentForNotExistingPath_ShouldThrowIOException()
         {
-            _docsFileReader = new DocsFileReader();
             Assert.Throws<IOException>(() => _docsFileReader.ReadContent("TestFiles/File7.txt"));
         }
     }
