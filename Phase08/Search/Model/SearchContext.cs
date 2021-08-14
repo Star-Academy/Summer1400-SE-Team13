@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Search.Model
 {
@@ -9,8 +8,9 @@ namespace Search.Model
         public DbSet<Word> Words { get; set;}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            const string connectionString = "Server=.;Database=FullTextSearch;Trusted_Connection=True;";
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Server=.;Database=FullTextSearch;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(connectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

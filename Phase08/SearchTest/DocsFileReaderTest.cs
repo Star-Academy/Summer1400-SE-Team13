@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Search;
+using Search.Interface;
 using Search.Model;
 using Xunit;
 namespace SearchTest

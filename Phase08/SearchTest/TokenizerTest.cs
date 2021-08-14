@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Search;
+using Search.Interface;
 using Xunit;
 
 namespace SearchTest

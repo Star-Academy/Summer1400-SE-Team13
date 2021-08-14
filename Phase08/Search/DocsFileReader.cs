@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Search.Interface;
 using Search.Model;
 
 namespace Search

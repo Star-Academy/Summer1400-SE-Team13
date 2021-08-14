@@ -3,6 +3,7 @@ using Search;
 using Search.Model;
 using Xunit;
 using NSubstitute;
+using Search.Interface;
 
 namespace SearchTest
 {

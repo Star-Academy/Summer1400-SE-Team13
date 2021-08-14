@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Search
+namespace Search.Interface
 {
     public interface IIOHandler
     {

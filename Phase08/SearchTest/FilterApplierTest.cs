@@ -2,6 +2,7 @@
 using System.Linq;
 using NSubstitute;
 using Search;
+using Search.Interface;
 using Xunit;
 
 namespace SearchTest
