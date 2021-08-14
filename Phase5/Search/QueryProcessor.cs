@@ -4,9 +4,9 @@ namespace Phase5
 {
     public class QueryProcessor : IQueryProcessor
     {
-        public HashSet<string> PlusCommandWords { get; set; }
-        public HashSet<string> MinusCommandWords { get; set; }
-        public HashSet<string> NoSignCommandWords { get; set; }
+        public HashSet<string> PlusCommandWords { get; }
+        public HashSet<string> MinusCommandWords { get; }
+        public HashSet<string> NoSignCommandWords { get; }
 
         public QueryProcessor()
         {
