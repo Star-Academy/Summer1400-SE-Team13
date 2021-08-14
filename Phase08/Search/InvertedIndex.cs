@@ -33,7 +33,6 @@ namespace Search
                             Docs = new List<Doc>()
                         });
                     }
-
                     _searchContext.SaveChanges();
                     var word = _searchContext.Words.Find(wordIter);
                     word.Docs.Add(doc);
