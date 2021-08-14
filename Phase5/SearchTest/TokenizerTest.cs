@@ -6,7 +6,7 @@ namespace SearchTest
 {
     public class TokenizerTest
     {
-        private readonly Tokenizer _tokenizer;
+        private readonly ITokenizer _tokenizer;
         public TokenizerTest()
         {
             _tokenizer = new Tokenizer();
