@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Phase5
+namespace Phase5.Interface
 {
     public interface IFullTextSearch
     {

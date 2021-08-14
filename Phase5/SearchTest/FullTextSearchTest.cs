@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NSubstitute;
 using Phase5;
+using Phase5.Interface;
 using Xunit;
 
 namespace SearchTest

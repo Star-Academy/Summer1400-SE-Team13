@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Phase5;
+using Phase5.Interface;
 using Xunit;
 
 namespace SearchTest
