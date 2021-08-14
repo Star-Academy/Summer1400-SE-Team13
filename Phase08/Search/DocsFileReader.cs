@@ -28,7 +28,6 @@ namespace Search
             var filesAddress = new List<string>();
             if (File.Exists(path))
                 filesAddress.Add(path);
-
             else if (Directory.Exists(path))
                 filesAddress.AddRange(Directory.GetFiles(path).ToList());
             else
