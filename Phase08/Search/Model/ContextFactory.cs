@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Search.Model
 {
-    public class ContextFactory
+    public class ContextFactory : IDesignTimeDbContextFactory<SearchContext>
     {
-        public SearchContext CreateDbContext()
+        public SearchContext CreateDbContext(string[] args)
         {
             const string connectionString = "Server=.;Database=FullTextSearch;Trusted_Connection=True;";
             var optionsBuilder = new DbContextOptionsBuilder<SearchContext>();
