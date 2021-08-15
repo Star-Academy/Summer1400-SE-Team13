@@ -7,6 +7,7 @@ namespace Search.Model
     {
         [Key]
         public string Content {get; set;}
-        public List<Doc> Docs { get; set; }
+
+        public List<Doc> Docs { get; set; } = new();
     }
 }

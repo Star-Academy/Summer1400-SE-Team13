@@ -19,7 +19,6 @@ namespace Search
         {
             foreach (var doc in docsSet)
             {
-                _searchContext.Docs.Add(doc);
                 var docWords = tokenizer.Tokenize(doc.Content);
                 foreach (var wordIter in docWords)
                 {
@@ -30,11 +29,10 @@ namespace Search
                             Content = wordIter,
                             Docs = new List<Doc>()
                         });
+                        _searchContext.SaveChanges();
                     }
-                    _searchContext.SaveChanges();
                     var word = _searchContext.Words.Find(wordIter);
                     word.Docs.Add(doc);
-                    _searchContext.SaveChanges();
                 }
             }
         }
