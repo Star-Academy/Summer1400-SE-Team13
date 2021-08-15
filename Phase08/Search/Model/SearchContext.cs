@@ -6,12 +6,7 @@ namespace Search.Model
     {
         public DbSet<Doc> Docs { get; set; }
         public DbSet<Word> Words { get; set;}
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            const string connectionString = "Server=.;Database=FullTextSearch;Trusted_Connection=True;";
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+        public SearchContext(DbContextOptions<SearchContext> dbContextOptions) : base(dbContextOptions) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

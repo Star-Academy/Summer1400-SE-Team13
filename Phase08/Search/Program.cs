@@ -8,7 +8,7 @@ namespace Search
         {
             var ioHandler = new IOHandler();
             var command = ioHandler.GetUserInput();
-            var context = new SearchContext();
+            var context = new ContextFactory().CreateDbContext();
             var invertedIndex = new InvertedIndex(context);
             var docsFileReader = new DocsFileReader();
             var tokenizer = new Tokenizer();

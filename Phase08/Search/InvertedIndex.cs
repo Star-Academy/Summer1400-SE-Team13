@@ -17,9 +17,6 @@ namespace Search
 
         public void BuildInvertedIndex(HashSet<Doc> docsSet, ITokenizer tokenizer)
         {
-            _searchContext.Database.EnsureDeleted();
-            _searchContext.Database.EnsureCreated();
-           
             foreach (var doc in docsSet)
             {
                 _searchContext.Docs.Add(doc);
