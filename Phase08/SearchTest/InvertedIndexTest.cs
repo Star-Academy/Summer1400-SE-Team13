@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Search;
 using Search.Model;
 using Xunit;
@@ -7,25 +8,31 @@ using Search.Interface;
 
 namespace SearchTest
 {
-    public class GetWordDocsTest
+    public class InvertedIndexTest
     {
         private readonly ITokenizer _tokenizer;
-        private IInvertedIndex _invertedIndex;
+        private readonly IInvertedIndex _invertedIndex;
 
-        public GetWordDocsTest()
+        public InvertedIndexTest()
         {
+            var contextOptions = new DbContextOptionsBuilder<SearchContext>()
+                .UseInMemoryDatabase("Test")
+                .Options;
+            var searchContext = new SearchContext(contextOptions);
+            searchContext.Database.EnsureDeleted();
+            searchContext.Database.EnsureCreated();
+            _invertedIndex = new InvertedIndex(searchContext);
             _tokenizer = Substitute.For<ITokenizer>();
         }
         
-        [Fact]
-        public void BuildInvertedIndexTest()
+        [Theory]
+        [InlineData("microsoft", new [] {"File1"})]
+        [InlineData("word", new string[]{})]
+        public void TestGetWordDocs_ForExistingAndNotExistingWord(string testWord, string[] expected)
         {
             SetupMockedTokenizer();
-            using var context = new SearchContext();
-            _invertedIndex = new InvertedIndex(context);
             _invertedIndex.BuildInvertedIndex(SetupDocs(), _tokenizer);
-            var expected = new HashSet<string>() {"File1"};
-            Assert.Equal(expected, _invertedIndex.GetWordDocs("microsoft"));
+            Assert.Equal(expected, _invertedIndex.GetWordDocs(testWord));
         }
         private HashSet<Doc> SetupDocs()
         {
