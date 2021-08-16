@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Search.Interface;
+using Search.Model;
 
 namespace Search
 {
@@ -26,7 +22,14 @@ namespace Search
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<SearchContext>(options => 
+                options.UseSqlServer("Server=.;Database=FullTextSearch;Trusted_Connection=True;"));
+            services.AddScoped<ITokenizer, Tokenizer>();
+            services.AddScoped<IDocsFileReader, DocsFileReader>();
+            services.AddScoped<IInvertedIndex, InvertedIndex>();
+            services.AddScoped<IQueryProcessor, QueryProcessor>();
+            services.AddScoped<IFilterApplier, FilterApplier>();
+            services.AddScoped<IFullTextSearch, FullTextSearch>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Search", Version = "v1"}); });
