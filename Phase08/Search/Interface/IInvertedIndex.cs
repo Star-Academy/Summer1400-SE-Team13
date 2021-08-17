@@ -5,7 +5,7 @@ namespace Search.Interface
 {
     public interface IInvertedIndex
     {
-        public void BuildInvertedIndex(HashSet<Doc> docs, ITokenizer tokenizer);
+        void BuildInvertedIndex(Dictionary<string, string> docsSet, ITokenizer tokenizer);
         HashSet<string> GetWordDocs(string word);
     }
 }

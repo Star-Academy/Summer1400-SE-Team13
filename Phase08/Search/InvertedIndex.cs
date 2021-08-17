@@ -15,11 +15,16 @@ namespace Search
             _searchContext = searchContext;
         }
 
-        public void BuildInvertedIndex(HashSet<Doc> docsSet, ITokenizer tokenizer)
+        public void BuildInvertedIndex(Dictionary<string, string> docsSet, ITokenizer tokenizer)
         {
-            foreach (var doc in docsSet)
+            foreach (var (docName, docContent) in docsSet)
             {
-                var docWords = tokenizer.Tokenize(doc.Content);
+                var docWords = tokenizer.Tokenize(docContent);
+                var doc = new Doc()
+                {
+                    Name = docName,
+                    Content = docContent
+                };
                 AddWordsDocs(doc, docWords);
             }
         }
