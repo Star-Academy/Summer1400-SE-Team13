@@ -20,20 +20,7 @@ namespace Search
             foreach (var doc in docsSet)
             {
                 var docWords = tokenizer.Tokenize(doc.Content);
-                foreach (var wordIter in docWords)
-                {
-                    if (!_searchContext.Words.Any(w => w.Content == wordIter))
-                    {
-                        _searchContext.Words.Add(new Word()
-                        {
-                            Content = wordIter,
-                            Docs = new List<Doc>()
-                        });
-                        _searchContext.SaveChanges();
-                    }
-                    var word = _searchContext.Words.Find(wordIter);
-                    word.Docs.Add(doc);
-                }
+                AddWordsDocs(doc, docWords);
             }
         }
         
@@ -42,6 +29,29 @@ namespace Search
             var existingWord = _searchContext.Words.Include(w => w.Docs).FirstOrDefault(w => w.Content == word);
             var wordDocs = existingWord == null ? new HashSet<string>() : existingWord.Docs.Select(d => d.Name).ToHashSet();
             return wordDocs;
+        }
+        
+        private void AddWordsDocs(Doc doc, IEnumerable<string> docWords)
+        {
+            foreach (var wordIter in docWords)
+            {
+                if (!_searchContext.Words.Any(w => w.Content == wordIter))
+                {
+                   AddNewWord(wordIter);
+                }
+                var word = _searchContext.Words.Find(wordIter);
+                word.Docs.Add(doc);
+            }
+        }
+        
+        private void AddNewWord(string word)
+        {
+            _searchContext.Words.Add(new Word()
+            {
+                Content = word,
+                Docs = new List<Doc>()
+            });
+            _searchContext.SaveChanges();
         }
     }
 }
