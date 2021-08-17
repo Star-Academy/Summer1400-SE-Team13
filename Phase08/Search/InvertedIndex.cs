@@ -31,7 +31,7 @@ namespace Search
         
         public HashSet<string> GetWordDocs(string word)
         {
-            var existingWord = _searchContext.Words.Include(w => w.Docs).FirstOrDefault(w => w.Content == word);
+            var existingWord = _searchContext.Words.Include(w => w.Docs).SingleOrDefault(w => w.Content == word);
             var wordDocs = existingWord == null ? new HashSet<string>() : existingWord.Docs.Select(d => d.Name).ToHashSet();
             return wordDocs;
         }
@@ -40,7 +40,7 @@ namespace Search
         {
             foreach (var wordIter in docWords)
             {
-                var word = _searchContext.Words.FirstOrDefault(w => w.Content == wordIter);
+                var word = _searchContext.Words.SingleOrDefault(w => w.Content == wordIter);
                 if (word == null)
                 {
                    AddNewWord(wordIter, doc);
