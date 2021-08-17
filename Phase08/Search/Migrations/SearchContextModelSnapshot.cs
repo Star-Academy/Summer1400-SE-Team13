@@ -30,7 +30,7 @@ namespace Search.Migrations
 
                     b.HasIndex("WordsContent");
 
-                    b.ToTable("RelationTable");
+                    b.ToTable("WordDoc");
                 });
 
             modelBuilder.Entity("Search.Model.Doc", b =>
