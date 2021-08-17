@@ -15,18 +15,21 @@ namespace SearchTest
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
         }
-      
-        [Theory]
-        [InlineData(new [] {"microsoft"},new [] {"xunit"},new [] {"hello"}, new string[] {})]
-        [InlineData(new string[]{}, new [] {"xunit", "hello"}, new string[] {}, new string[] {})]
-        [InlineData(new [] {"microsoft", "hello"}, new string[] {}, new [] {"xunit"}, new [] {"File3.txt"})]
-        public void FilterApplierTestMethod(string[] plusWords, string[] minusWords, string[] noSignWords, string[] expected)
+        
+        public static IEnumerable<object[]> FilterApplierTestData()
+        {
+            yield return new object[] {new HashSet<string> {"microsoft"},new HashSet<string> {"xunit"},new HashSet<string> {"hello"}, new HashSet<string>()};
+            yield return new object[] {new HashSet<string>(), new HashSet<string> {"xunit", "hello"}, new HashSet<string>(), new HashSet<string>()};
+            yield return new object[] {new HashSet<string> {"microsoft", "hello"}, new HashSet<string>(), new HashSet<string> {"xunit"}, new HashSet<string> {"File3.txt"}};
+        }
+        
+        [Theory, MemberData(nameof(FilterApplierTestData))]
+        public void FilterApplierTestMethod(HashSet<string> plusWords, HashSet<string> minusWords, HashSet<string> noSignWords, HashSet<string> expected)
         {
             SetupInvertedIndex();
             var filterApplier = new FilterApplier(_invertedIndex);
-            var actualValue =
-                filterApplier.Filter(plusWords.ToHashSet(), minusWords.ToHashSet(), noSignWords.ToHashSet());
-            Assert.Equal(expected.ToHashSet(), actualValue);
+            var actualValue = filterApplier.Filter(plusWords, minusWords, noSignWords);
+            Assert.Equal(expected, actualValue);
         }
         private void SetupInvertedIndex()
         {

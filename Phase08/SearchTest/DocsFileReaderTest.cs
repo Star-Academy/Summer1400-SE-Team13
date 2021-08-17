@@ -14,7 +14,7 @@ namespace SearchTest
         }
         
         [Fact]
-        public void TestReadContentFromSingleFile()
+        public void ReadContent_ShouldReturnDictionaryOfFileNameAndContent_ForSingleFile()
         {
             var expected = new Dictionary<string, string>
             {
@@ -24,7 +24,7 @@ namespace SearchTest
         }
 
         [Fact]
-        public void TestReadContentFromFolder()
+        public void ReadContent_ShouldReturnDictionaryOfFileNameAndContent_ForFolder()
         {
             var expected = new Dictionary<string, string>
             {
