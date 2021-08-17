@@ -17,7 +17,7 @@ namespace Phase5
          {
              if (!commandResult.Any())
              {
-                 Console.WriteLine("No do found!");
+                 Console.WriteLine("No doc found!");
              }
              else
              {
