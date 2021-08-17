@@ -12,7 +12,7 @@ namespace Search.Model
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Word>()
             .HasMany(w => w.Docs)
-            .WithMany(d => d.Words).UsingEntity(x => x.ToTable("RelationTable"));
+            .WithMany(d => d.Words).UsingEntity(x => x.ToTable("WordDoc"));
         }
     }
 }

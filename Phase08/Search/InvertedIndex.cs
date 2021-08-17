@@ -40,21 +40,24 @@ namespace Search
         {
             foreach (var wordIter in docWords)
             {
-                if (!_searchContext.Words.Any(w => w.Content == wordIter))
+                var word = _searchContext.Words.FirstOrDefault(w => w.Content == wordIter);
+                if (word == null)
                 {
-                   AddNewWord(wordIter);
+                   AddNewWord(wordIter, doc);
                 }
-                var word = _searchContext.Words.Find(wordIter);
-                word.Docs.Add(doc);
+                else
+                {
+                    word.Docs.Add(doc);
+                }
             }
         }
         
-        private void AddNewWord(string word)
+        private void AddNewWord(string word, Doc doc)
         {
             _searchContext.Words.Add(new Word()
             {
                 Content = word,
-                Docs = new List<Doc>()
+                Docs = new List<Doc> {doc}
             });
             _searchContext.SaveChanges();
         }
