@@ -4,6 +4,8 @@ using Search.Interface;
 
 namespace Search.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SearchController : Controller
     {
         private readonly IFullTextSearch _fullTextSearch;
