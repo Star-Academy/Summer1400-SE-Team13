@@ -24,12 +24,12 @@ namespace Search
         {
             services.AddDbContext<SearchContext>(options => 
                 options.UseSqlServer("Server=.;Database=FullTextSearch;Trusted_Connection=True;"));
-            services.AddScoped<ITokenizer, Tokenizer>();
-            services.AddScoped<IDocsFileReader, DocsFileReader>();
-            services.AddScoped<IInvertedIndex, InvertedIndex>();
-            services.AddScoped<IQueryProcessor, QueryProcessor>();
-            services.AddScoped<IFilterApplier, FilterApplier>();
-            services.AddScoped<IFullTextSearch, FullTextSearch>();
+            services.AddTransient<ITokenizer, Tokenizer>();
+            services.AddTransient<IDocsFileReader, DocsFileReader>();
+            services.AddTransient<IInvertedIndex, InvertedIndex>();
+            services.AddTransient<IQueryProcessor, QueryProcessor>();
+            services.AddTransient<IFilterApplier, FilterApplier>();
+            services.AddTransient<IFullTextSearch, FullTextSearch>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Search", Version = "v1"}); });
