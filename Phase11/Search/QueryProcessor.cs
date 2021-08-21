@@ -5,17 +5,10 @@ namespace Search
 {
     public class QueryProcessor : IQueryProcessor
     {
-        public HashSet<string> PlusCommandWords { get; set; }
-        public HashSet<string> MinusCommandWords { get; set; }
-        public HashSet<string> NoSignCommandWords { get; set; }
-
-        public QueryProcessor()
-        {
-            PlusCommandWords = new HashSet<string>();
-            MinusCommandWords = new HashSet<string>();
-            NoSignCommandWords = new HashSet<string>();
-        }
-
+        public HashSet<string> PlusCommandWords { get; set; } = new();
+        public HashSet<string> MinusCommandWords { get; set; } = new();
+        public HashSet<string> NoSignCommandWords { get; set; } = new();
+        
         public void SplitCommandWordsBySign(string command)
         {
             var commandWords = command.ToLower().Split(" ");

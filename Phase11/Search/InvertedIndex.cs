@@ -15,33 +15,51 @@ namespace Search
             _searchContext = searchContext;
         }
 
-        public void BuildInvertedIndex(HashSet<Doc> docsSet, ITokenizer tokenizer)
+        public void BuildInvertedIndex(Dictionary<string, string> docsSet, ITokenizer tokenizer)
         {
-            foreach (var doc in docsSet)
+            foreach (var (docName, docContent) in docsSet)
             {
-                var docWords = tokenizer.Tokenize(doc.Content);
-                foreach (var wordIter in docWords)
+                var docWords = tokenizer.Tokenize(docContent);
+                var doc = new Doc()
                 {
-                    if (!_searchContext.Words.Any(w => w.Content == wordIter))
-                    {
-                        _searchContext.Words.Add(new Word()
-                        {
-                            Content = wordIter,
-                            Docs = new List<Doc>()
-                        });
-                        _searchContext.SaveChanges();
-                    }
-                    var word = _searchContext.Words.Find(wordIter);
-                    word.Docs.Add(doc);
-                }
+                    Name = docName,
+                    Content = docContent
+                };
+                AddWordsDocs(doc, docWords);
             }
         }
         
         public HashSet<string> GetWordDocs(string word)
         {
-            var existingWord = _searchContext.Words.Include(w => w.Docs).FirstOrDefault(w => w.Content == word);
+            var existingWord = _searchContext.Words.Include(w => w.Docs).SingleOrDefault(w => w.Content == word);
             var wordDocs = existingWord == null ? new HashSet<string>() : existingWord.Docs.Select(d => d.Name).ToHashSet();
             return wordDocs;
+        }
+        
+        private void AddWordsDocs(Doc doc, IEnumerable<string> docWords)
+        {
+            foreach (var wordIter in docWords)
+            {
+                var word = _searchContext.Words.SingleOrDefault(w => w.Content == wordIter);
+                if (word == null)
+                {
+                    AddNewWord(wordIter, doc);
+                }
+                else
+                {
+                    word.Docs.Add(doc);
+                }
+            }
+        }
+        
+        private void AddNewWord(string word, Doc doc)
+        {
+            _searchContext.Words.Add(new Word()
+            {
+                Content = word,
+                Docs = new List<Doc> {doc}
+            });
+            _searchContext.SaveChanges();
         }
     }
 }

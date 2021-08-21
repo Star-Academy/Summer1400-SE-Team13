@@ -9,7 +9,7 @@ using Search.Model;
 namespace Search.Migrations
 {
     [DbContext(typeof(SearchContext))]
-    [Migration("20210816131008_InvertedIndex")]
+    [Migration("20210821055908_InvertedIndex")]
     partial class InvertedIndex
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace Search.Migrations
 
                     b.HasIndex("WordsContent");
 
-                    b.ToTable("RelationTable");
+                    b.ToTable("WordDoc");
                 });
 
             modelBuilder.Entity("Search.Model.Doc", b =>

@@ -30,7 +30,7 @@ namespace Search.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RelationTable",
+                name: "WordDoc",
                 columns: table => new
                 {
                     DocsName = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -38,15 +38,15 @@ namespace Search.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RelationTable", x => new { x.DocsName, x.WordsContent });
+                    table.PrimaryKey("PK_WordDoc", x => new { x.DocsName, x.WordsContent });
                     table.ForeignKey(
-                        name: "FK_RelationTable_Docs_DocsName",
+                        name: "FK_WordDoc_Docs_DocsName",
                         column: x => x.DocsName,
                         principalTable: "Docs",
                         principalColumn: "Name",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RelationTable_Words_WordsContent",
+                        name: "FK_WordDoc_Words_WordsContent",
                         column: x => x.WordsContent,
                         principalTable: "Words",
                         principalColumn: "Content",
@@ -54,15 +54,15 @@ namespace Search.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_RelationTable_WordsContent",
-                table: "RelationTable",
+                name: "IX_WordDoc_WordsContent",
+                table: "WordDoc",
                 column: "WordsContent");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RelationTable");
+                name: "WordDoc");
 
             migrationBuilder.DropTable(
                 name: "Docs");
