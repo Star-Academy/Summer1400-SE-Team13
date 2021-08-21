@@ -5,9 +5,9 @@ namespace Search
 {
     public class QueryProcessor : IQueryProcessor
     {
-        public HashSet<string> PlusCommandWords { get; set; } = new();
-        public HashSet<string> MinusCommandWords { get; set; } = new();
-        public HashSet<string> NoSignCommandWords { get; set; } = new();
+        public HashSet<string> PlusCommandWords { get; } = new();
+        public HashSet<string> MinusCommandWords { get; } = new();
+        public HashSet<string> NoSignCommandWords { get; } = new();
         
         public void SplitCommandWordsBySign(string command)
         {
