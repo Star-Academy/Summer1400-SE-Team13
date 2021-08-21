@@ -2,7 +2,7 @@
 
 namespace Search.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InvertedIndex : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

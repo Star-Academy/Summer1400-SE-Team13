@@ -9,8 +9,8 @@ using Search.Model;
 namespace Search.Migrations
 {
     [DbContext(typeof(SearchContext))]
-    [Migration("20210817111940_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210821051522_InvertedIndex")]
+    partial class InvertedIndex
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
