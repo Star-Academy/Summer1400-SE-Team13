@@ -22,8 +22,8 @@ namespace Search
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SearchContext>(options => 
-                options.UseSqlServer("Server=.;Database=FullTextSearch;Trusted_Connection=True;"));
+            services.AddDbContext<SearchContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("database")));
             services.AddTransient<ITokenizer, Tokenizer>();
             services.AddTransient<IDocsFileReader, DocsFileReader>();
             services.AddTransient<IInvertedIndex, InvertedIndex>();
