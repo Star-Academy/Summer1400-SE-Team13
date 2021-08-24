@@ -14,9 +14,9 @@ namespace Search
         
         public IEnumerable<string> Filter(IEnumerable<string> plusWords, IEnumerable<string> minusWords, IEnumerable<string> noSignWords)
         {
-            var plusCommandWordsDocs = GetSignDocs(plusWords);
-            var minusCommandWordsDocs = GetSignDocs(minusWords);
-            var noSignCommandWordsDocs = GetNoSignDocs(noSignWords);
+            var plusCommandWordsDocs = GetSpecificSignWordsDocs(plusWords);
+            var minusCommandWordsDocs = GetSpecificSignWordsDocs(minusWords);
+            var noSignCommandWordsDocs = GetNoSignWordsDocs(noSignWords);
             var result = FindFilteredResult(plusCommandWordsDocs, minusCommandWordsDocs, noSignCommandWordsDocs);
             return result;
         }
@@ -27,7 +27,7 @@ namespace Search
             var result = !plusDocs.Any() ? noSignWithoutMinus : noSignWithoutMinus.Intersect(plusDocs).ToHashSet();
             return result;
         }
-        private IEnumerable<string> GetNoSignDocs(IEnumerable<string> noSignWords)
+        private IEnumerable<string> GetNoSignWordsDocs(IEnumerable<string> noSignWords)
         {
             return noSignWords.Any()
                 ? noSignWords.Select(x => _invertedIndex.GetWordDocs(x))
@@ -35,7 +35,7 @@ namespace Search
                 : new HashSet<string>();
         }
 
-        private IEnumerable<string> GetSignDocs(IEnumerable<string> signWords)
+        private IEnumerable<string> GetSpecificSignWordsDocs(IEnumerable<string> signWords)
         {
             return signWords.SelectMany(x => _invertedIndex.GetWordDocs(x)).ToHashSet();
         }
