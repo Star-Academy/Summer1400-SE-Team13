@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Search.Interface;
 
 namespace Search
@@ -24,10 +24,9 @@ namespace Search
             _filterApplier = filterApplier;
         }
 
-        public HashSet<string> FindCommandResult(string command)
+        public HashSet<string> FindCommandResult(string command, string folderPath)
         {
-            const string filePath = "EnglishData";
-            var docs = _docsFileReader.ReadContent(filePath);
+            var docs = _docsFileReader.ReadContent(folderPath);
             _invertedIndex.BuildInvertedIndex(docs, _tokenizer);
             _queryProcessor.SplitCommandWordsBySign(command);
             var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);

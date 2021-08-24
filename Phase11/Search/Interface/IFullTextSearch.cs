@@ -4,6 +4,6 @@ namespace Search.Interface
 {
     public interface IFullTextSearch
     {
-        HashSet<string> FindCommandResult(string command);
+        HashSet<string> FindCommandResult(string command, string folderPath);
     }
 }
