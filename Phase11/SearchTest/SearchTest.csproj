@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.8" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="NSubstitute" Version="4.2.2" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.0.2">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Search\Search.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="obj\Debug\net5.0\SearchTest.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net5.0\SearchTest.assets.cache" />
+      <Content Include="obj\Debug\net5.0\SearchTest.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net5.0\SearchTest.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
+      <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\rider.project.restore.info" />
+      <Content Include="obj\SearchTest.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="TestFiles\File1.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\File2.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\File3.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
