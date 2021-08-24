@@ -19,9 +19,7 @@ namespace Search.Controllers
         public IActionResult SearchQuery([FromQuery] string query)
         {
             var result = _fullTextSearch.FindCommandResult(query);
-            if (!result.Any())
-                return NotFound();
-            return Ok(result);
+            return !result.Any() ? Ok("No doc found!") : Ok(result);
         }
     }
 }
