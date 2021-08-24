@@ -40,7 +40,7 @@ namespace Search
         {
             foreach (var wordIter in docWords)
             {
-                var word = _searchContext.Words.SingleOrDefault(w => w.Content == wordIter);
+                var word = GetWord(wordIter);
                 if (word == null)
                 {
                     AddNewWord(wordIter, doc);
@@ -50,6 +50,12 @@ namespace Search
                     word.Docs.Add(doc);
                 }
             }
+        }
+
+        private Word GetWord(string wordContent)
+        {
+            var word = _searchContext.Words.SingleOrDefault(w => w.Content == wordContent);
+            return word;
         }
         
         private void AddNewWord(string word, Doc doc)
