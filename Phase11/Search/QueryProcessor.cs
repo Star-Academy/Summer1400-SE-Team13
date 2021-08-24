@@ -5,28 +5,28 @@ namespace Search
 {
     public class QueryProcessor : IQueryProcessor
     {
-        public HashSet<string> PlusCommandWords { get; } = new();
-        public HashSet<string> MinusCommandWords { get; } = new();
-        public HashSet<string> NoSignCommandWords { get; } = new();
-        
-        public void SplitCommandWordsBySign(string command)
+        public CommandWords SplitCommandWordsBySign(string command)
         {
             var commandWords = command.ToLower().Split(" ");
+            var plusCommandWords = new HashSet<string>();
+            var minusCommandWords = new HashSet<string>();
+            var noSignCommandWords = new HashSet<string>();
             foreach (var word in commandWords)
             {
                 switch (word[0])
                 {
                     case '+':
-                        PlusCommandWords.Add(word.Substring(1));
+                        plusCommandWords.Add(word.Substring(1));
                         break;
                     case '-':
-                        MinusCommandWords.Add(word.Substring(1));
+                        minusCommandWords.Add(word.Substring(1));
                         break;
                     default:
-                        NoSignCommandWords.Add(word);
+                        noSignCommandWords.Add(word);
                         break;
                 }
             }
+            return new CommandWords(plusCommandWords, minusCommandWords, noSignCommandWords);
         }
     }
 }

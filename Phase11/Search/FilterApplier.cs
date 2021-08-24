@@ -12,7 +12,7 @@ namespace Search
             _invertedIndex = invertedIndex;
         }
         
-        public HashSet<string> Filter(HashSet<string> plusWords, HashSet<string> minusWords, HashSet<string> noSignWords)
+        public IEnumerable<string> Filter(IEnumerable<string> plusWords, IEnumerable<string> minusWords, IEnumerable<string> noSignWords)
         {
             var plusCommandWordsDocs = GetSignDocs(plusWords);
             var minusCommandWordsDocs = GetSignDocs(minusWords);
@@ -21,13 +21,13 @@ namespace Search
             return result;
         }
 
-        private HashSet<string> FindFilteredResult(HashSet<string> plusDocs, HashSet<string> minusDocs, HashSet<string> noSignDocs)
+        private IEnumerable<string> FindFilteredResult(IEnumerable<string> plusDocs, IEnumerable<string> minusDocs, IEnumerable<string> noSignDocs)
         {
             var noSignWithoutMinus = new HashSet<string>(noSignDocs).Except(minusDocs).ToHashSet();
             var result = !plusDocs.Any() ? noSignWithoutMinus : noSignWithoutMinus.Intersect(plusDocs).ToHashSet();
             return result;
         }
-        private HashSet<string> GetNoSignDocs(HashSet<string> noSignWords)
+        private IEnumerable<string> GetNoSignDocs(IEnumerable<string> noSignWords)
         {
             return noSignWords.Any()
                 ? noSignWords.Select(x => _invertedIndex.GetWordDocs(x))
@@ -35,7 +35,7 @@ namespace Search
                 : new HashSet<string>();
         }
 
-        private HashSet<string> GetSignDocs(HashSet<string> signWords)
+        private IEnumerable<string> GetSignDocs(IEnumerable<string> signWords)
         {
             return signWords.SelectMany(x => _invertedIndex.GetWordDocs(x)).ToHashSet();
         }

@@ -24,12 +24,12 @@ namespace Search
             _filterApplier = filterApplier;
         }
 
-        public HashSet<string> FindCommandResult(string command, string folderPath)
+        public IEnumerable<string> FindCommandResult(string command, string folderPath)
         {
             var docs = _docsFileReader.ReadContent(folderPath);
             _invertedIndex.BuildInvertedIndex(docs, _tokenizer);
-            _queryProcessor.SplitCommandWordsBySign(command);
-            var result = _filterApplier.Filter(_queryProcessor.PlusCommandWords, _queryProcessor.MinusCommandWords, _queryProcessor.NoSignCommandWords);
+            var commandWords = _queryProcessor.SplitCommandWordsBySign(command);
+            var result = _filterApplier.Filter(commandWords.PlusCommandWords, commandWords.MinusCommandWords, commandWords.NoSignCommandWords);
             return result;
         }
     }
