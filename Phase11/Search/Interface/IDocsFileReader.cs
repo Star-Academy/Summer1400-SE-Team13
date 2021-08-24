@@ -4,6 +4,6 @@ namespace Search.Interface
 {
     public interface IDocsFileReader
     {
-        Dictionary<string, string> ReadContent(string path);
+        IDictionary<string, string> ReadContent(string path);
     }
 }

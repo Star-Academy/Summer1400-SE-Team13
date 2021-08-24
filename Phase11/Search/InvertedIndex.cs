@@ -15,7 +15,7 @@ namespace Search
             _searchContext = searchContext;
         }
 
-        public void BuildInvertedIndex(Dictionary<string, string> docsSet, ITokenizer tokenizer)
+        public void BuildInvertedIndex(IDictionary<string, string> docsSet, ITokenizer tokenizer)
         {
             foreach (var (docName, docContent) in docsSet)
             {

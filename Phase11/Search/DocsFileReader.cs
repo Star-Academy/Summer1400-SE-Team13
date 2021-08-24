@@ -7,7 +7,7 @@ namespace Search
 {
     public class DocsFileReader : IDocsFileReader
     {
-        public Dictionary<string, string> ReadContent(string path)
+        public IDictionary<string, string> ReadContent(string path)
         {
             var filesAddress = GetAllFilesAddresses(path);
             return filesAddress.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllText);
