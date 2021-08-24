@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Search", "Search\Search.csproj", "{823D3303-7A7E-4F42-B9F8-1E4D52F3C7DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchTest", "SearchTest\SearchTest.csproj", "{55885735-A095-46B7-B6FB-CD3A90EBAB4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{823D3303-7A7E-4F42-B9F8-1E4D52F3C7DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823D3303-7A7E-4F42-B9F8-1E4D52F3C7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823D3303-7A7E-4F42-B9F8-1E4D52F3C7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823D3303-7A7E-4F42-B9F8-1E4D52F3C7DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55885735-A095-46B7-B6FB-CD3A90EBAB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55885735-A095-46B7-B6FB-CD3A90EBAB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55885735-A095-46B7-B6FB-CD3A90EBAB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55885735-A095-46B7-B6FB-CD3A90EBAB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
