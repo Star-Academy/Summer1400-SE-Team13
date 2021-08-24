@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Search.Interface;
 
 namespace Search
 {
-    public class CommandWords : ICommandWords
+    public class CommandWords
     {
         public IEnumerable<string> PlusCommandWords { get; }
         public IEnumerable<string> MinusCommandWords { get; }
