@@ -36,3 +36,14 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./**/coverage.cobertura.xml
         fail_ci_if_error: true
+    - name: Upload coverage
+      if: success()
+      run: |
+        curl -s https://codecov.io/bash -o codecov.bash
+        ./codecov.bash
+        # OR
+        # curl -s https://codecov.io/bash | bash
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+       
+      shell: bash
