@@ -1,0 +1,32 @@
+
+name: publish
+
+on:
+  release:
+    types:
+      published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+        
+    - name: Get current release version
+      id: version
+      uses: pozetroninc/github-action-get-latest-release@master
+      with:
+        repository: Star-Academy/Summer1400-SE-Team13
+        
+    - name: Build library and generate NuGet Package
+      run: dotnet pack -c Release -o artifacts -p:PackageVersion=${{ steps.version.outputs.release }}
+      working-directory: Phase11/Search/Search
+      
+    - name: Publish NuGet Package
+      run: dotnet nuget push ./**/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
