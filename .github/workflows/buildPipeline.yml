@@ -29,21 +29,3 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
       working-directory: Phase11
-      
-    - name: Publish code coverage reports to codecove.io
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./**/coverage.cobertura.xml
-        fail_ci_if_error: true
-    - name: Upload coverage
-      if: success()
-      run: |
-        curl -s https://codecov.io/bash -o codecov.bash
-        ./codecov.bash
-        # OR
-        # curl -s https://codecov.io/bash | bash
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-       
-      shell: bash
